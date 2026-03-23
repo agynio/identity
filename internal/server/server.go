@@ -3,7 +3,6 @@ package server
 import (
 	"context"
 	"errors"
-	"fmt"
 
 	identityv1 "github.com/agynio/identity/.gen/go/agynio/api/identity/v1"
 	"github.com/agynio/identity/internal/store"
@@ -89,9 +88,6 @@ func (s *Server) BatchGetIdentityTypes(ctx context.Context, req *identityv1.Batc
 }
 
 func parseUUID(value string) (uuid.UUID, error) {
-	if value == "" {
-		return uuid.UUID{}, fmt.Errorf("value is empty")
-	}
 	id, err := uuid.Parse(value)
 	if err != nil {
 		return uuid.UUID{}, err

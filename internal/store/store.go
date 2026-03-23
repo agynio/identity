@@ -52,7 +52,7 @@ func (s *Store) BatchGetIdentityTypes(ctx context.Context, identityIDs []uuid.UU
 		array[i] = pgtype.UUID{Bytes: id, Valid: true}
 	}
 
-	rows, err := s.pool.Query(ctx, `SELECT identity_id, identity_type FROM identities WHERE identity_id = ANY($1) ORDER BY identity_id`, array)
+	rows, err := s.pool.Query(ctx, `SELECT identity_id, identity_type FROM identities WHERE identity_id = ANY($1)`, array)
 	if err != nil {
 		return nil, err
 	}

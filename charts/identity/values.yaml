@@ -73,6 +73,7 @@ env:
   - name: GRPC_ADDRESS
     value: ":50051"
   - name: DATABASE_URL
+    # Required. Override via envFrom/secret.
     value: ""
 envFrom: []
 extraEnvVars: []
