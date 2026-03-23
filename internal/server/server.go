@@ -55,7 +55,7 @@ func (s *Server) GetIdentityType(ctx context.Context, req *identityv1.GetIdentit
 func (s *Server) BatchGetIdentityTypes(ctx context.Context, req *identityv1.BatchGetIdentityTypesRequest) (*identityv1.BatchGetIdentityTypesResponse, error) {
 	identityIDs := req.GetIdentityIds()
 	if len(identityIDs) == 0 {
-		return &identityv1.BatchGetIdentityTypesResponse{IdentityTypes: nil}, nil
+		return &identityv1.BatchGetIdentityTypesResponse{Entries: nil}, nil
 	}
 
 	ids := make([]uuid.UUID, 0, len(identityIDs))
@@ -85,7 +85,7 @@ func (s *Server) BatchGetIdentityTypes(ctx context.Context, req *identityv1.Batc
 		entries = append(entries, &identityv1.IdentityTypeEntry{IdentityId: id.String(), IdentityType: protoType})
 	}
 
-	return &identityv1.BatchGetIdentityTypesResponse{IdentityTypes: entries}, nil
+	return &identityv1.BatchGetIdentityTypesResponse{Entries: entries}, nil
 }
 
 func parseUUID(value string) (uuid.UUID, error) {
