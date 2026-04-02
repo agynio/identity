@@ -12,8 +12,6 @@ func identityTypeFromProto(value identityv1.IdentityType) (int16, error) {
 		return 1, nil
 	case identityv1.IdentityType_IDENTITY_TYPE_AGENT:
 		return 2, nil
-	case identityv1.IdentityType_IDENTITY_TYPE_CHANNEL:
-		return 3, nil
 	case identityv1.IdentityType_IDENTITY_TYPE_RUNNER:
 		return 4, nil
 	case identityv1.IdentityType_IDENTITY_TYPE_APP:
@@ -31,8 +29,6 @@ func identityTypeToProto(value int16) (identityv1.IdentityType, error) {
 		return identityv1.IdentityType_IDENTITY_TYPE_USER, nil
 	case 2:
 		return identityv1.IdentityType_IDENTITY_TYPE_AGENT, nil
-	case 3:
-		return identityv1.IdentityType_IDENTITY_TYPE_CHANNEL, nil
 	case 4:
 		return identityv1.IdentityType_IDENTITY_TYPE_RUNNER, nil
 	case 5:

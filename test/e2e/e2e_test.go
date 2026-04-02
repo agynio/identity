@@ -66,9 +66,9 @@ func TestIdentityServiceE2E(t *testing.T) {
 			IdentityIds: []string{secondID, uuid.NewString(), firstID},
 		})
 		require.NoError(t, err)
-		require.Len(t, batchResp.IdentityTypes, 2)
-		require.True(t, hasIdentityType(batchResp.IdentityTypes, firstID, identityv1.IdentityType_IDENTITY_TYPE_USER))
-		require.True(t, hasIdentityType(batchResp.IdentityTypes, secondID, identityv1.IdentityType_IDENTITY_TYPE_AGENT))
+		require.Len(t, batchResp.Entries, 2)
+		require.True(t, hasIdentityType(batchResp.Entries, firstID, identityv1.IdentityType_IDENTITY_TYPE_USER))
+		require.True(t, hasIdentityType(batchResp.Entries, secondID, identityv1.IdentityType_IDENTITY_TYPE_AGENT))
 	})
 
 	t.Run("NegativePaths", func(t *testing.T) {

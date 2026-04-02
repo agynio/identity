@@ -25,7 +25,7 @@ jobs:
           version: 1.66.0
 
       - name: Generate protobuf bindings
-        run: buf generate --path agynio/api/identity/v1
+        run: buf generate https://github.com/agynio/api.git#branch=main --path proto/agynio/api/identity/v1
 
       - name: Run tests
         run: go test ./...
