@@ -71,6 +71,102 @@ func TestIdentityServiceE2E(t *testing.T) {
 		require.True(t, hasIdentityType(batchResp.Entries, secondID, identityv1.IdentityType_IDENTITY_TYPE_AGENT))
 	})
 
+	t.Run("Nicknames", func(t *testing.T) {
+		orgID := uuid.NewString()
+		userID := uuid.NewString()
+		agentID := uuid.NewString()
+		appID := uuid.NewString()
+
+		_, err := client.RegisterIdentity(ctx, &identityv1.RegisterIdentityRequest{
+			IdentityId:   userID,
+			IdentityType: identityv1.IdentityType_IDENTITY_TYPE_USER,
+		})
+		require.NoError(t, err)
+		_, err = client.RegisterIdentity(ctx, &identityv1.RegisterIdentityRequest{
+			IdentityId:   agentID,
+			IdentityType: identityv1.IdentityType_IDENTITY_TYPE_AGENT,
+		})
+		require.NoError(t, err)
+		_, err = client.RegisterIdentity(ctx, &identityv1.RegisterIdentityRequest{
+			IdentityId:   appID,
+			IdentityType: identityv1.IdentityType_IDENTITY_TYPE_APP,
+		})
+		require.NoError(t, err)
+
+		_, err = client.SetNickname(ctx, &identityv1.SetNicknameRequest{
+			OrganizationId: orgID,
+			IdentityId:     userID,
+			Nickname:       "alice",
+		})
+		require.NoError(t, err)
+		_, err = client.SetNickname(ctx, &identityv1.SetNicknameRequest{
+			OrganizationId: orgID,
+			IdentityId:     userID,
+			Nickname:       "alice-updated",
+		})
+		require.NoError(t, err)
+
+		resolveResp, err := client.ResolveNickname(ctx, &identityv1.ResolveNicknameRequest{
+			OrganizationId: orgID,
+			Nickname:       "alice-updated",
+		})
+		require.NoError(t, err)
+		require.Equal(t, userID, resolveResp.IdentityId)
+		require.Equal(t, identityv1.IdentityType_IDENTITY_TYPE_USER, resolveResp.IdentityType)
+		require.Nil(t, resolveResp.InstallationId)
+
+		_, err = client.ResolveNickname(ctx, &identityv1.ResolveNicknameRequest{
+			OrganizationId: orgID,
+			Nickname:       "alice",
+		})
+		requireStatusCode(t, err, codes.NotFound)
+
+		_, err = client.SetNickname(ctx, &identityv1.SetNicknameRequest{
+			OrganizationId: orgID,
+			IdentityId:     agentID,
+			Nickname:       "alice-updated",
+		})
+		requireStatusCode(t, err, codes.AlreadyExists)
+
+		installationOne := uuid.NewString()
+		_, err = client.SetNickname(ctx, &identityv1.SetNicknameRequest{
+			OrganizationId: orgID,
+			IdentityId:     appID,
+			Nickname:       "app-main",
+			InstallationId: &installationOne,
+		})
+		require.NoError(t, err)
+		installationTwo := uuid.NewString()
+		_, err = client.SetNickname(ctx, &identityv1.SetNicknameRequest{
+			OrganizationId: orgID,
+			IdentityId:     appID,
+			Nickname:       "app-secondary",
+			InstallationId: &installationTwo,
+		})
+		require.NoError(t, err)
+
+		appResolve, err := client.ResolveNickname(ctx, &identityv1.ResolveNicknameRequest{
+			OrganizationId: orgID,
+			Nickname:       "app-main",
+		})
+		require.NoError(t, err)
+		require.Equal(t, appID, appResolve.IdentityId)
+		require.Equal(t, identityv1.IdentityType_IDENTITY_TYPE_APP, appResolve.IdentityType)
+		require.NotNil(t, appResolve.InstallationId)
+		require.Equal(t, installationOne, appResolve.GetInstallationId())
+
+		_, err = client.RemoveNickname(ctx, &identityv1.RemoveNicknameRequest{
+			OrganizationId: orgID,
+			IdentityId:     userID,
+		})
+		require.NoError(t, err)
+		_, err = client.ResolveNickname(ctx, &identityv1.ResolveNicknameRequest{
+			OrganizationId: orgID,
+			Nickname:       "alice-updated",
+		})
+		requireStatusCode(t, err, codes.NotFound)
+	})
+
 	t.Run("NegativePaths", func(t *testing.T) {
 		_, err := client.GetIdentityType(ctx, &identityv1.GetIdentityTypeRequest{IdentityId: uuid.NewString()})
 		requireStatusCode(t, err, codes.NotFound)
