@@ -5,6 +5,7 @@ package e2e
 
 import (
 	"context"
+	"strings"
 	"testing"
 	"time"
 
@@ -157,6 +158,18 @@ func TestIdentityServiceE2E(t *testing.T) {
 
 		_, err = client.RemoveNickname(ctx, &identityv1.RemoveNicknameRequest{
 			OrganizationId: orgID,
+			IdentityId:     appID,
+			InstallationId: &installationOne,
+		})
+		require.NoError(t, err)
+		_, err = client.ResolveNickname(ctx, &identityv1.ResolveNicknameRequest{
+			OrganizationId: orgID,
+			Nickname:       "app-main",
+		})
+		requireStatusCode(t, err, codes.NotFound)
+
+		_, err = client.RemoveNickname(ctx, &identityv1.RemoveNicknameRequest{
+			OrganizationId: orgID,
 			IdentityId:     userID,
 		})
 		require.NoError(t, err)
@@ -182,6 +195,48 @@ func TestIdentityServiceE2E(t *testing.T) {
 
 		_, err = client.BatchGetIdentityTypes(ctx, &identityv1.BatchGetIdentityTypesRequest{IdentityIds: []string{"bad"}})
 		requireStatusCode(t, err, codes.InvalidArgument)
+
+		orgID := uuid.NewString()
+		identityID := uuid.NewString()
+		_, err = client.RegisterIdentity(ctx, &identityv1.RegisterIdentityRequest{
+			IdentityId:   identityID,
+			IdentityType: identityv1.IdentityType_IDENTITY_TYPE_USER,
+		})
+		require.NoError(t, err)
+
+		_, err = client.SetNickname(ctx, &identityv1.SetNicknameRequest{
+			OrganizationId: orgID,
+			IdentityId:     identityID,
+			Nickname:       "",
+		})
+		requireStatusCode(t, err, codes.InvalidArgument)
+
+		_, err = client.SetNickname(ctx, &identityv1.SetNicknameRequest{
+			OrganizationId: orgID,
+			IdentityId:     identityID,
+			Nickname:       strings.Repeat("a", 33),
+		})
+		requireStatusCode(t, err, codes.InvalidArgument)
+
+		_, err = client.SetNickname(ctx, &identityv1.SetNicknameRequest{
+			OrganizationId: orgID,
+			IdentityId:     identityID,
+			Nickname:       "Bad Name",
+		})
+		requireStatusCode(t, err, codes.InvalidArgument)
+
+		_, err = client.SetNickname(ctx, &identityv1.SetNicknameRequest{
+			OrganizationId: orgID,
+			IdentityId:     uuid.NewString(),
+			Nickname:       "valid",
+		})
+		requireStatusCode(t, err, codes.NotFound)
+
+		_, err = client.RemoveNickname(ctx, &identityv1.RemoveNicknameRequest{
+			OrganizationId: orgID,
+			IdentityId:     identityID,
+		})
+		requireStatusCode(t, err, codes.NotFound)
 	})
 }
 
