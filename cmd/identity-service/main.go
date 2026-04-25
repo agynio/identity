@@ -10,6 +10,7 @@ import (
 	"os/signal"
 	"syscall"
 
+	authorizationv1 "github.com/agynio/identity/.gen/go/agynio/api/authorization/v1"
 	identityv1 "github.com/agynio/identity/.gen/go/agynio/api/identity/v1"
 	"github.com/agynio/identity/internal/config"
 	"github.com/agynio/identity/internal/db"
@@ -17,6 +18,7 @@ import (
 	"github.com/agynio/identity/internal/store"
 	"github.com/jackc/pgx/v5/pgxpool"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials/insecure"
 )
 
 func main() {
@@ -48,8 +50,14 @@ func run() error {
 		return fmt.Errorf("apply migrations: %w", err)
 	}
 
+	authConn, err := grpc.NewClient(cfg.AuthorizationAddress, grpc.WithTransportCredentials(insecure.NewCredentials()))
+	if err != nil {
+		return fmt.Errorf("connect to authorization: %w", err)
+	}
+	defer authConn.Close()
+
 	grpcServer := grpc.NewServer()
-	identityv1.RegisterIdentityServiceServer(grpcServer, server.New(store.New(pool)))
+	identityv1.RegisterIdentityServiceServer(grpcServer, server.New(store.New(pool), authorizationv1.NewAuthorizationServiceClient(authConn)))
 
 	lis, err := net.Listen("tcp", cfg.GRPCAddress)
 	if err != nil {

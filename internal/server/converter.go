@@ -7,11 +7,10 @@ import (
 )
 
 const (
-	dbIdentityTypeUser    int16 = 1
-	dbIdentityTypeAgent   int16 = 2
-	dbIdentityTypeChannel int16 = 3
-	dbIdentityTypeRunner  int16 = 4
-	dbIdentityTypeApp     int16 = 5
+	dbIdentityTypeUser   int16 = 1
+	dbIdentityTypeAgent  int16 = 2
+	dbIdentityTypeRunner int16 = 4
+	dbIdentityTypeApp    int16 = 5
 )
 
 var identityTypeMappings = []struct {
@@ -20,7 +19,6 @@ var identityTypeMappings = []struct {
 }{
 	{proto: identityv1.IdentityType_IDENTITY_TYPE_USER, db: dbIdentityTypeUser},
 	{proto: identityv1.IdentityType_IDENTITY_TYPE_AGENT, db: dbIdentityTypeAgent},
-	{proto: identityv1.IdentityType_IDENTITY_TYPE_CHANNEL, db: dbIdentityTypeChannel},
 	{proto: identityv1.IdentityType_IDENTITY_TYPE_RUNNER, db: dbIdentityTypeRunner},
 	{proto: identityv1.IdentityType_IDENTITY_TYPE_APP, db: dbIdentityTypeApp},
 }
