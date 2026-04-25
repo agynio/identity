@@ -20,7 +20,8 @@ func (s *Store) SetNickname(ctx context.Context, organizationID uuid.UUID, ident
 	if installationID == nil {
 		_, err := s.pool.Exec(ctx, `INSERT INTO org_nicknames (organization_id, identity_id, installation_id, nickname)
 VALUES ($1, $2, NULL, $3)
-ON CONFLICT ON CONSTRAINT org_nicknames_org_identity_key
+ON CONFLICT (organization_id, identity_id)
+WHERE installation_id IS NULL
 DO UPDATE SET nickname = EXCLUDED.nickname`, organizationID, identityID, nickname)
 		if err != nil {
 			return mapNicknameError(err)
@@ -30,7 +31,8 @@ DO UPDATE SET nickname = EXCLUDED.nickname`, organizationID, identityID, nicknam
 
 	_, err := s.pool.Exec(ctx, `INSERT INTO org_nicknames (organization_id, identity_id, installation_id, nickname)
 VALUES ($1, $2, $3, $4)
-ON CONFLICT ON CONSTRAINT org_nicknames_org_installation_key
+ON CONFLICT (organization_id, installation_id)
+WHERE installation_id IS NOT NULL
 DO UPDATE SET nickname = EXCLUDED.nickname, identity_id = EXCLUDED.identity_id`, organizationID, identityID, *installationID, nickname)
 	if err != nil {
 		return mapNicknameError(err)
