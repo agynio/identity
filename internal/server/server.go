@@ -4,20 +4,37 @@ import (
 	"context"
 	"errors"
 
+	authorizationv1 "github.com/agynio/identity/.gen/go/agynio/api/authorization/v1"
 	identityv1 "github.com/agynio/identity/.gen/go/agynio/api/identity/v1"
 	"github.com/agynio/identity/internal/store"
 	"github.com/google/uuid"
+	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
 
-type Server struct {
-	identityv1.UnimplementedIdentityServiceServer
-	store *store.Store
+type identityStore interface {
+	RegisterIdentity(context.Context, uuid.UUID, int16) error
+	GetIdentityType(context.Context, uuid.UUID) (int16, error)
+	BatchGetIdentityTypes(context.Context, []uuid.UUID) (map[uuid.UUID]int16, error)
+	SetNickname(context.Context, uuid.UUID, uuid.UUID, *uuid.UUID, string) error
+	RemoveNickname(context.Context, uuid.UUID, uuid.UUID, *uuid.UUID) error
+	ResolveNickname(context.Context, uuid.UUID, string) (store.NicknameResolution, error)
+	BatchGetNicknames(context.Context, uuid.UUID, []uuid.UUID) (map[uuid.UUID]string, error)
 }
 
-func New(store *store.Store) *Server {
-	return &Server{store: store}
+type authorizationChecker interface {
+	Check(context.Context, *authorizationv1.CheckRequest, ...grpc.CallOption) (*authorizationv1.CheckResponse, error)
+}
+
+type Server struct {
+	identityv1.UnimplementedIdentityServiceServer
+	store               identityStore
+	authorizationClient authorizationChecker
+}
+
+func New(store identityStore, authorizationClient authorizationChecker) *Server {
+	return &Server{store: store, authorizationClient: authorizationClient}
 }
 
 func (s *Server) RegisterIdentity(ctx context.Context, req *identityv1.RegisterIdentityRequest) (*identityv1.RegisterIdentityResponse, error) {

@@ -2,7 +2,6 @@
 ARG GO_VERSION=1.25
 ARG BUF_VERSION=1.66.0
 ARG BUF_INPUT=buf.build/agynio/api
-ARG BUF_PATH=agynio/api/identity/v1
 
 FROM --platform=$BUILDPLATFORM golang:${GO_VERSION}-alpine AS buf
 ARG BUF_VERSION
@@ -27,8 +26,7 @@ RUN --mount=type=cache,target=/go/pkg/mod \
 
 COPY buf.gen.yaml buf.yaml ./
 ARG BUF_INPUT
-ARG BUF_PATH
-RUN buf generate ${BUF_INPUT} --path ${BUF_PATH}
+RUN buf generate ${BUF_INPUT} --path agynio/api/identity/v1 --path agynio/api/authorization/v1
 
 COPY . .
 

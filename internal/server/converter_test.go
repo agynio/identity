@@ -15,7 +15,6 @@ func TestIdentityTypeRoundTrip(t *testing.T) {
 	}{
 		{name: "user", proto: identityv1.IdentityType_IDENTITY_TYPE_USER, db: 1},
 		{name: "agent", proto: identityv1.IdentityType_IDENTITY_TYPE_AGENT, db: 2},
-		{name: "channel", proto: identityv1.IdentityType_IDENTITY_TYPE_CHANNEL, db: 3},
 		{name: "runner", proto: identityv1.IdentityType_IDENTITY_TYPE_RUNNER, db: 4},
 		{name: "app", proto: identityv1.IdentityType_IDENTITY_TYPE_APP, db: 5},
 	}

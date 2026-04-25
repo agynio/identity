@@ -4,6 +4,10 @@ The Identity service registers identity IDs and their corresponding types.
 
 Architecture: [Identity](https://github.com/agynio/architecture/blob/main/architecture/identity.md)
 
+## Nickname Lookup Behavior
+
+`BatchGetNicknames` returns entries only for identities with nicknames; identity IDs without a nickname are omitted from the response.
+
 ## Local Development
 
 Full setup: [Local Development](https://github.com/agynio/architecture/blob/main/architecture/operations/local-development.md)
