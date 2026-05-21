@@ -46,13 +46,17 @@ functions:
                 - sh
                 - -c
                 - |
-                  set -eu
+                  set -eux
+                  echo "Waiting for synced identity source..."
                   elapsed=0
-                  while [ ! -f /opt/app/data/go.mod ]; do
+                  while [ ! -f /opt/app/data/go.mod ] || [ ! -f /opt/app/data/buf.gen.yaml ] || [ ! -f /opt/app/data/cmd/identity-service/main.go ]; do
                     sleep 1; elapsed=$((elapsed + 1))
-                    [ "$elapsed" -ge 120 ] && { echo "ERROR: sync timeout" >&2; exit 1; }
+                    [ "$elapsed" -ge 300 ] && { echo "ERROR: sync timeout" >&2; exit 1; }
                   done
+                  echo "Files synced, generating protobuf types..."
                   buf generate buf.build/agynio/api --path agynio/api/identity/v1 --path agynio/api/authorization/v1
+                  echo "buf generate complete, starting identity..."
+                  export GOTOOLCHAIN=local
                   exec go run ./cmd/identity-service
               volumeMounts:
                 - name: data
