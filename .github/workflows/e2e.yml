@@ -41,8 +41,11 @@ jobs:
       - name: Prepare generated sources
         run: buf generate buf.build/agynio/api --path agynio/api/identity/v1 --path agynio/api/authorization/v1
 
-      - name: Prime Go module cache
-        run: go mod download
+      - name: Build source binary for DevSpace
+        run: |
+          go mod download
+          mkdir -p dist
+          CGO_ENABLED=0 go build -o dist/identity-devspace ./cmd/identity-service
 
       - name: Deploy identity from source
         run: devspace dev

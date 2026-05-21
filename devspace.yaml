@@ -49,12 +49,12 @@ functions:
                   set -eux
                   echo "Waiting for synced identity source..."
                   elapsed=0
-                  while [ ! -f /opt/app/data/go.mod ] || [ ! -f /opt/app/data/buf.gen.yaml ] || [ ! -f /opt/app/data/cmd/identity-service/main.go ]; do
+                  while [ ! -x /opt/app/data/dist/identity-devspace ]; do
                     sleep 1; elapsed=$((elapsed + 1))
                     [ "$elapsed" -ge 300 ] && { echo "ERROR: sync timeout" >&2; exit 1; }
                   done
                   echo "Files synced; starting identity from source..."
-                  exec go run ./cmd/identity-service
+                  exec /opt/app/data/dist/identity-devspace
               volumeMounts:
                 - name: data
                   mountPath: /opt/app/data
