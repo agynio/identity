@@ -33,4 +33,5 @@ jobs:
       - name: Run E2E tests
         uses: agynio/e2e/.github/actions/run-tests@main
         with:
-          service: identity
+          tag: svc_identity
+          include_smoke: "false"
