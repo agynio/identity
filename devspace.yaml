@@ -27,7 +27,7 @@ functions:
     fi
   patch_deployment: |-
     echo "Patching identity deployment for DevSpace..."
-    kubectl patch deployment identity-identity -n ${IDENTITY_NAMESPACE} --type strategic --patch "$(cat <<'EOF'
+    kubectl patch deployment identity -n ${IDENTITY_NAMESPACE} --type strategic --patch "$(cat <<'EOF'
     spec:
       template:
         spec:
