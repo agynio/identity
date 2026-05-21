@@ -27,7 +27,7 @@ functions:
     fi
   patch_deployment: |-
     echo "Patching identity deployment for DevSpace..."
-    kubectl patch deployment identity-identity -n ${IDENTITY_NAMESPACE} --type strategic --patch "$(cat <<'EOF'
+    kubectl patch deployment identity -n ${IDENTITY_NAMESPACE} --type strategic --patch "$(cat <<'EOF'
     spec:
       template:
         spec:
@@ -46,17 +46,21 @@ functions:
                 - sh
                 - -c
                 - |
-                  set -eu
+                  set -eux
+                  echo "Waiting for synced identity source..."
                   elapsed=0
-                  while [ ! -f /opt/app/data/go.mod ]; do
+                  while [ ! -x /opt/app/data/dist/identity-devspace ]; do
                     sleep 1; elapsed=$((elapsed + 1))
-                    [ "$elapsed" -ge 120 ] && { echo "ERROR: sync timeout" >&2; exit 1; }
+                    [ "$elapsed" -ge 300 ] && { echo "ERROR: sync timeout" >&2; exit 1; }
                   done
-                  buf generate buf.build/agynio/api --path agynio/api/identity/v1 --path agynio/api/authorization/v1
-                  exec go run ./cmd/identity-service
+                  echo "Files synced; starting identity from source..."
+                  exec /opt/app/data/dist/identity-devspace
               volumeMounts:
                 - name: data
                   mountPath: /opt/app/data
+              livenessProbe: null
+              readinessProbe: null
+              startupProbe: null
               resources:
                 requests:
                   cpu: 500m
@@ -94,8 +98,8 @@ deployments:
           app.kubernetes.io/name: identity-e2e
 
 commands:
-  test:e2e: |-
-    devspace run-pipeline test:e2e $@
+  test-e2e: |-
+    devspace run-pipeline test-e2e $@
 
 pipelines:
   dev:
@@ -127,7 +131,7 @@ pipelines:
         stop_dev identity
       fi
 
-  test:e2e:
+  test-e2e:
     run: |-
       create_deployments e2e-runner
       start_dev e2e-runner &
@@ -135,7 +139,7 @@ pipelines:
       exec_container \
         --label-selector "app.kubernetes.io/name=identity-e2e" \
         -n ${IDENTITY_NAMESPACE} \
-        -- bash -c 'cd /opt/app/data && buf generate buf.build/agynio/api --path agynio/api/identity/v1 --path agynio/api/authorization/v1 && go test -v -count=1 -tags e2e ./test/e2e/'
+        -- bash -c 'cd /opt/app/data && go test -v -count=1 -tags e2e ./test/e2e/'
       EXIT_CODE=$?
       stop_dev e2e-runner
       purge_deployments e2e-runner
