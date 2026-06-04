@@ -1,5 +1,5 @@
 nameOverride: ""
-fullnameOverride: ""
+fullnameOverride: "identity"
 
 global:
   imageRegistry: ""
@@ -73,8 +73,10 @@ env:
   - name: GRPC_ADDRESS
     value: ":50051"
   - name: DATABASE_URL
-    # Required. Override via envFrom/secret.
-    value: ""
+    valueFrom:
+      secretKeyRef:
+        name: agyn-platform-database-urls
+        key: identity
 envFrom: []
 extraEnvVars: []
 extraEnvVarsCM: ""
