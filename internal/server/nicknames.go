@@ -30,9 +30,13 @@ func (s *Server) SetNickname(ctx context.Context, req *identityv1.SetNicknameReq
 	if err != nil {
 		return nil, status.Errorf(codes.InvalidArgument, "identity_id: %v", err)
 	}
-	nickname, err := normalizeNickname(req.GetNickname())
+	nickname, err := normalizeNicknameStem(req.GetNickname())
 	if err != nil {
 		return nil, status.Errorf(codes.InvalidArgument, "nickname: %v", err)
+	}
+	instanceSuffix, err := parseOptionalHandleSegment(req.InstanceSuffix)
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "instance_suffix: %v", err)
 	}
 	installationID, err := parseOptionalUUID(req.InstallationId)
 	if err != nil {
@@ -54,8 +58,11 @@ func (s *Server) SetNickname(ctx context.Context, req *identityv1.SetNicknameReq
 	if err := validateInstallationID(protoType, installationID); err != nil {
 		return nil, status.Errorf(codes.InvalidArgument, "installation_id: %v", err)
 	}
+	if err := validateInstanceSuffix(protoType, instanceSuffix); err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "instance_suffix: %v", err)
+	}
 
-	if err := s.store.SetNickname(ctx, organizationID, identityID, installationID, nickname); err != nil {
+	if err := s.store.SetNickname(ctx, organizationID, identityID, installationID, nickname, instanceSuffix); err != nil {
 		return nil, toStatusError(err)
 	}
 
@@ -114,7 +121,7 @@ func (s *Server) ResolveNickname(ctx context.Context, req *identityv1.ResolveNic
 	if err != nil {
 		return nil, status.Errorf(codes.InvalidArgument, "organization_id: %v", err)
 	}
-	nickname, err := normalizeNickname(req.GetNickname())
+	nickname, instanceSuffix, err := parseNicknameHandle(req.GetNickname(), req.InstanceSuffix)
 	if err != nil {
 		return nil, status.Errorf(codes.InvalidArgument, "nickname: %v", err)
 	}
@@ -123,7 +130,7 @@ func (s *Server) ResolveNickname(ctx context.Context, req *identityv1.ResolveNic
 		return nil, err
 	}
 
-	resolution, err := s.store.ResolveNickname(ctx, organizationID, nickname)
+	resolution, err := s.store.ResolveNickname(ctx, organizationID, nickname, instanceSuffix)
 	if err != nil {
 		return nil, toStatusError(err)
 	}
@@ -139,6 +146,9 @@ func (s *Server) ResolveNickname(ctx context.Context, req *identityv1.ResolveNic
 	if resolution.InstallationID != nil {
 		installationID := resolution.InstallationID.String()
 		response.InstallationId = &installationID
+	}
+	if resolution.InstanceSuffix != nil {
+		response.InstanceSuffix = resolution.InstanceSuffix
 	}
 	return response, nil
 }
@@ -187,13 +197,25 @@ func (s *Server) BatchGetNicknames(ctx context.Context, req *identityv1.BatchGet
 		if !ok {
 			continue
 		}
-		entries = append(entries, &identityv1.NicknameEntry{IdentityId: id.String(), Nickname: nickname})
+		entries = append(entries, &identityv1.NicknameEntry{
+			IdentityId:      id.String(),
+			Nickname:        nickname.Nickname,
+			InstanceSuffix: nickname.InstanceSuffix,
+		})
 	}
 
 	return &identityv1.BatchGetNicknamesResponse{Entries: entries}, nil
 }
 
-func normalizeNickname(value string) (string, error) {
+func normalizeNicknameStem(value string) (string, error) {
+	trimmed := strings.TrimPrefix(strings.TrimSpace(value), "@")
+	if strings.Contains(trimmed, "#") {
+		return "", fmt.Errorf("must not include instance suffix")
+	}
+	return normalizeHandleSegment(trimmed)
+}
+
+func normalizeHandleSegment(value string) (string, error) {
 	trimmed := strings.TrimSpace(value)
 	if trimmed == "" {
 		return "", fmt.Errorf("must be provided")
@@ -205,6 +227,54 @@ func normalizeNickname(value string) (string, error) {
 		return "", fmt.Errorf("must match %s", nicknamePattern.String())
 	}
 	return trimmed, nil
+}
+
+func parseNicknameHandle(value string, explicitSuffix *string) (string, *string, error) {
+	trimmed := strings.TrimPrefix(strings.TrimSpace(value), "@")
+	if trimmed == "" {
+		return "", nil, fmt.Errorf("must be provided")
+	}
+	if explicitSuffix != nil && strings.Contains(trimmed, "#") {
+		return "", nil, fmt.Errorf("must not include # when instance_suffix is set")
+	}
+	if explicitSuffix != nil {
+		nickname, err := normalizeNicknameStem(trimmed)
+		if err != nil {
+			return "", nil, err
+		}
+		instanceSuffix, err := parseOptionalHandleSegment(explicitSuffix)
+		if err != nil {
+			return "", nil, fmt.Errorf("instance_suffix: %w", err)
+		}
+		return nickname, instanceSuffix, nil
+	}
+	parts := strings.Split(trimmed, "#")
+	if len(parts) > 2 {
+		return "", nil, fmt.Errorf("must contain at most one #")
+	}
+	nickname, err := normalizeHandleSegment(parts[0])
+	if err != nil {
+		return "", nil, err
+	}
+	if len(parts) == 1 {
+		return nickname, nil, nil
+	}
+	instanceSuffix, err := normalizeHandleSegment(parts[1])
+	if err != nil {
+		return "", nil, fmt.Errorf("instance_suffix: %w", err)
+	}
+	return nickname, &instanceSuffix, nil
+}
+
+func parseOptionalHandleSegment(value *string) (*string, error) {
+	if value == nil {
+		return nil, nil
+	}
+	normalized, err := normalizeHandleSegment(*value)
+	if err != nil {
+		return nil, err
+	}
+	return &normalized, nil
 }
 
 func parseOptionalUUID(value *string) (*uuid.UUID, error) {
@@ -231,6 +301,19 @@ func validateInstallationID(identityType identityv1.IdentityType, installationID
 	}
 	if installationID != nil {
 		return fmt.Errorf("only valid for app identities")
+	}
+	return nil
+}
+
+func validateInstanceSuffix(identityType identityv1.IdentityType, instanceSuffix *string) error {
+	if identityType == identityv1.IdentityType_IDENTITY_TYPE_AGENT_INSTANCE {
+		if instanceSuffix == nil {
+			return fmt.Errorf("required for agent_instance identities")
+		}
+		return nil
+	}
+	if instanceSuffix != nil {
+		return fmt.Errorf("only valid for agent_instance identities")
 	}
 	return nil
 }

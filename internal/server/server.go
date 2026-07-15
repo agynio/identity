@@ -17,10 +17,10 @@ type identityStore interface {
 	RegisterIdentity(context.Context, uuid.UUID, int16) error
 	GetIdentityType(context.Context, uuid.UUID) (int16, error)
 	BatchGetIdentityTypes(context.Context, []uuid.UUID) (map[uuid.UUID]int16, error)
-	SetNickname(context.Context, uuid.UUID, uuid.UUID, *uuid.UUID, string) error
+	SetNickname(context.Context, uuid.UUID, uuid.UUID, *uuid.UUID, string, *string) error
 	RemoveNickname(context.Context, uuid.UUID, uuid.UUID, *uuid.UUID) error
-	ResolveNickname(context.Context, uuid.UUID, string) (store.NicknameResolution, error)
-	BatchGetNicknames(context.Context, uuid.UUID, []uuid.UUID) (map[uuid.UUID]string, error)
+	ResolveNickname(context.Context, uuid.UUID, string, *string) (store.NicknameResolution, error)
+	BatchGetNicknames(context.Context, uuid.UUID, []uuid.UUID) (map[uuid.UUID]store.NicknameEntry, error)
 }
 
 type authorizationChecker interface {
