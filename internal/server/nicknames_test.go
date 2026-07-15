@@ -31,17 +31,26 @@ func (f *fakeAuthClient) Check(_ context.Context, req *authorizationv1.CheckRequ
 }
 
 type fakeStore struct {
-	batchNicknames     map[uuid.UUID]string
+	batchNicknames     map[uuid.UUID]store.NicknameEntry
 	batchErr           error
 	lastOrganizationID uuid.UUID
 	lastIdentityIDs    []uuid.UUID
+	identityTypes      map[uuid.UUID]int16
+	lastNickname       string
+	lastInstanceSuffix *string
+	resolution         store.NicknameResolution
 }
 
 func (f *fakeStore) RegisterIdentity(context.Context, uuid.UUID, int16) error {
 	return nil
 }
 
-func (f *fakeStore) GetIdentityType(context.Context, uuid.UUID) (int16, error) {
+func (f *fakeStore) GetIdentityType(_ context.Context, identityID uuid.UUID) (int16, error) {
+	if f.identityTypes != nil {
+		if identityType, ok := f.identityTypes[identityID]; ok {
+			return identityType, nil
+		}
+	}
 	return dbIdentityTypeUser, nil
 }
 
@@ -49,7 +58,9 @@ func (f *fakeStore) BatchGetIdentityTypes(context.Context, []uuid.UUID) (map[uui
 	return map[uuid.UUID]int16{}, nil
 }
 
-func (f *fakeStore) SetNickname(context.Context, uuid.UUID, uuid.UUID, *uuid.UUID, string) error {
+func (f *fakeStore) SetNickname(_ context.Context, _ uuid.UUID, _ uuid.UUID, _ *uuid.UUID, nickname string, instanceSuffix *string) error {
+	f.lastNickname = nickname
+	f.lastInstanceSuffix = instanceSuffix
 	return nil
 }
 
@@ -57,11 +68,13 @@ func (f *fakeStore) RemoveNickname(context.Context, uuid.UUID, uuid.UUID, *uuid.
 	return nil
 }
 
-func (f *fakeStore) ResolveNickname(context.Context, uuid.UUID, string) (store.NicknameResolution, error) {
-	return store.NicknameResolution{}, nil
+func (f *fakeStore) ResolveNickname(_ context.Context, _ uuid.UUID, nickname string, instanceSuffix *string) (store.NicknameResolution, error) {
+	f.lastNickname = nickname
+	f.lastInstanceSuffix = instanceSuffix
+	return f.resolution, nil
 }
 
-func (f *fakeStore) BatchGetNicknames(_ context.Context, organizationID uuid.UUID, identityIDs []uuid.UUID) (map[uuid.UUID]string, error) {
+func (f *fakeStore) BatchGetNicknames(_ context.Context, organizationID uuid.UUID, identityIDs []uuid.UUID) (map[uuid.UUID]store.NicknameEntry, error) {
 	f.lastOrganizationID = organizationID
 	f.lastIdentityIDs = identityIDs
 	if f.batchErr != nil {
@@ -76,7 +89,7 @@ func TestBatchGetNicknamesOmitsMissing(t *testing.T) {
 	firstIdentity := uuid.New()
 	secondIdentity := uuid.New()
 
-	store := &fakeStore{batchNicknames: map[uuid.UUID]string{secondIdentity: "runner"}}
+	store := &fakeStore{batchNicknames: map[uuid.UUID]store.NicknameEntry{secondIdentity: {Nickname: "runner"}}}
 	auth := &fakeAuthClient{allowed: true}
 	server := New(store, auth)
 
@@ -129,4 +142,119 @@ func requireStatusCode(t *testing.T, err error, code codes.Code) {
 	statusErr, ok := status.FromError(err)
 	require.True(t, ok)
 	require.Equal(t, code, statusErr.Code())
+}
+
+func TestSetNicknameAcceptsAgentInstanceSuffix(t *testing.T) {
+	organizationID := uuid.New()
+	callerID := uuid.New()
+	identityID := uuid.New()
+	instanceSuffix := "planning-run-1"
+	store := &fakeStore{identityTypes: map[uuid.UUID]int16{identityID: dbIdentityTypeAgentInstance}}
+	server := New(store, &fakeAuthClient{allowed: true})
+
+	ctx := metadata.NewIncomingContext(context.Background(), metadata.Pairs(identityHeaderKey, callerID.String()))
+	_, err := server.SetNickname(ctx, &identityv1.SetNicknameRequest{
+		OrganizationId: organizationID.String(),
+		IdentityId:     identityID.String(),
+		Nickname:       "@bob",
+		InstanceSuffix: &instanceSuffix,
+	})
+	require.NoError(t, err)
+	require.Equal(t, "bob", store.lastNickname)
+	require.NotNil(t, store.lastInstanceSuffix)
+	require.Equal(t, instanceSuffix, *store.lastInstanceSuffix)
+}
+
+func TestSetNicknameRequiresSuffixForAgentInstance(t *testing.T) {
+	organizationID := uuid.New()
+	callerID := uuid.New()
+	identityID := uuid.New()
+	store := &fakeStore{identityTypes: map[uuid.UUID]int16{identityID: dbIdentityTypeAgentInstance}}
+	server := New(store, &fakeAuthClient{allowed: true})
+
+	ctx := metadata.NewIncomingContext(context.Background(), metadata.Pairs(identityHeaderKey, callerID.String()))
+	_, err := server.SetNickname(ctx, &identityv1.SetNicknameRequest{
+		OrganizationId: organizationID.String(),
+		IdentityId:     identityID.String(),
+		Nickname:       "bob",
+	})
+	requireStatusCode(t, err, codes.InvalidArgument)
+}
+
+func TestSetNicknameRejectsSuffixForNonInstance(t *testing.T) {
+	organizationID := uuid.New()
+	callerID := uuid.New()
+	identityID := uuid.New()
+	instanceSuffix := "7a2f"
+	store := &fakeStore{identityTypes: map[uuid.UUID]int16{identityID: dbIdentityTypeAgent}}
+	server := New(store, &fakeAuthClient{allowed: true})
+
+	ctx := metadata.NewIncomingContext(context.Background(), metadata.Pairs(identityHeaderKey, callerID.String()))
+	_, err := server.SetNickname(ctx, &identityv1.SetNicknameRequest{
+		OrganizationId: organizationID.String(),
+		IdentityId:     identityID.String(),
+		Nickname:       "bob",
+		InstanceSuffix: &instanceSuffix,
+	})
+	requireStatusCode(t, err, codes.InvalidArgument)
+}
+
+func TestResolveNicknameParsesInstanceHandle(t *testing.T) {
+	organizationID := uuid.New()
+	callerID := uuid.New()
+	identityID := uuid.New()
+	instanceSuffix := "7a2f"
+	store := &fakeStore{resolution: store.NicknameResolution{
+		IdentityID:     identityID,
+		IdentityType:   dbIdentityTypeAgentInstance,
+		InstanceSuffix: &instanceSuffix,
+	}}
+	server := New(store, &fakeAuthClient{allowed: true})
+
+	ctx := metadata.NewIncomingContext(context.Background(), metadata.Pairs(identityHeaderKey, callerID.String()))
+	response, err := server.ResolveNickname(ctx, &identityv1.ResolveNicknameRequest{
+		OrganizationId: organizationID.String(),
+		Nickname:       "@bob#7a2f",
+	})
+	require.NoError(t, err)
+	require.Equal(t, "bob", store.lastNickname)
+	require.NotNil(t, store.lastInstanceSuffix)
+	require.Equal(t, instanceSuffix, *store.lastInstanceSuffix)
+	require.Equal(t, identityID.String(), response.GetIdentityId())
+	require.Equal(t, identityv1.IdentityType_IDENTITY_TYPE_AGENT_INSTANCE, response.GetIdentityType())
+	require.Equal(t, instanceSuffix, response.GetInstanceSuffix())
+}
+
+func TestResolveNicknameRejectsDuplicateSuffixInputs(t *testing.T) {
+	organizationID := uuid.New()
+	callerID := uuid.New()
+	instanceSuffix := "7a2f"
+	server := New(&fakeStore{}, &fakeAuthClient{allowed: true})
+
+	ctx := metadata.NewIncomingContext(context.Background(), metadata.Pairs(identityHeaderKey, callerID.String()))
+	_, err := server.ResolveNickname(ctx, &identityv1.ResolveNicknameRequest{
+		OrganizationId: organizationID.String(),
+		Nickname:       "bob#7a2f",
+		InstanceSuffix: &instanceSuffix,
+	})
+	requireStatusCode(t, err, codes.InvalidArgument)
+}
+
+func TestBatchGetNicknamesReturnsInstanceSuffix(t *testing.T) {
+	organizationID := uuid.New()
+	callerID := uuid.New()
+	identityID := uuid.New()
+	instanceSuffix := "7a2f"
+	store := &fakeStore{batchNicknames: map[uuid.UUID]store.NicknameEntry{identityID: {Nickname: "bob", InstanceSuffix: &instanceSuffix}}}
+	server := New(store, &fakeAuthClient{allowed: true})
+
+	ctx := metadata.NewIncomingContext(context.Background(), metadata.Pairs(identityHeaderKey, callerID.String()))
+	response, err := server.BatchGetNicknames(ctx, &identityv1.BatchGetNicknamesRequest{
+		OrganizationId: organizationID.String(),
+		IdentityIds:    []string{identityID.String()},
+	})
+	require.NoError(t, err)
+	require.Len(t, response.Entries, 1)
+	require.Equal(t, "bob", response.Entries[0].GetNickname())
+	require.Equal(t, instanceSuffix, response.Entries[0].GetInstanceSuffix())
 }

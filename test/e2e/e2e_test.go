@@ -46,11 +46,23 @@ func TestIdentityServiceE2E(t *testing.T) {
 		getResp, err := client.GetIdentityType(ctx, &identityv1.GetIdentityTypeRequest{IdentityId: identityID})
 		require.NoError(t, err)
 		require.Equal(t, identityv1.IdentityType_IDENTITY_TYPE_USER, getResp.IdentityType)
+
+		agentInstanceID := uuid.NewString()
+		_, err = client.RegisterIdentity(ctx, &identityv1.RegisterIdentityRequest{
+			IdentityId:   agentInstanceID,
+			IdentityType: identityv1.IdentityType_IDENTITY_TYPE_AGENT_INSTANCE,
+		})
+		require.NoError(t, err)
+
+		agentInstanceResp, err := client.GetIdentityType(ctx, &identityv1.GetIdentityTypeRequest{IdentityId: agentInstanceID})
+		require.NoError(t, err)
+		require.Equal(t, identityv1.IdentityType_IDENTITY_TYPE_AGENT_INSTANCE, agentInstanceResp.IdentityType)
 	})
 
 	t.Run("BatchGetIdentityTypes", func(t *testing.T) {
 		firstID := uuid.NewString()
 		secondID := uuid.NewString()
+		thirdID := uuid.NewString()
 		_, err := client.RegisterIdentity(ctx, &identityv1.RegisterIdentityRequest{
 			IdentityId:   firstID,
 			IdentityType: identityv1.IdentityType_IDENTITY_TYPE_USER,
@@ -61,14 +73,20 @@ func TestIdentityServiceE2E(t *testing.T) {
 			IdentityType: identityv1.IdentityType_IDENTITY_TYPE_AGENT,
 		})
 		require.NoError(t, err)
-
-		batchResp, err := client.BatchGetIdentityTypes(ctx, &identityv1.BatchGetIdentityTypesRequest{
-			IdentityIds: []string{secondID, uuid.NewString(), firstID},
+		_, err = client.RegisterIdentity(ctx, &identityv1.RegisterIdentityRequest{
+			IdentityId:   thirdID,
+			IdentityType: identityv1.IdentityType_IDENTITY_TYPE_AGENT_INSTANCE,
 		})
 		require.NoError(t, err)
-		require.Len(t, batchResp.Entries, 2)
+
+		batchResp, err := client.BatchGetIdentityTypes(ctx, &identityv1.BatchGetIdentityTypesRequest{
+			IdentityIds: []string{secondID, uuid.NewString(), thirdID, firstID},
+		})
+		require.NoError(t, err)
+		require.Len(t, batchResp.Entries, 3)
 		require.True(t, hasIdentityType(batchResp.Entries, firstID, identityv1.IdentityType_IDENTITY_TYPE_USER))
 		require.True(t, hasIdentityType(batchResp.Entries, secondID, identityv1.IdentityType_IDENTITY_TYPE_AGENT))
+		require.True(t, hasIdentityType(batchResp.Entries, thirdID, identityv1.IdentityType_IDENTITY_TYPE_AGENT_INSTANCE))
 	})
 
 	t.Run("NegativePaths", func(t *testing.T) {

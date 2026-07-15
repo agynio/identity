@@ -7,10 +7,11 @@ import (
 )
 
 const (
-	dbIdentityTypeUser   int16 = 1
-	dbIdentityTypeAgent  int16 = 2
-	dbIdentityTypeRunner int16 = 4
-	dbIdentityTypeApp    int16 = 5
+	dbIdentityTypeUser          int16 = 1
+	dbIdentityTypeAgent         int16 = 2
+	dbIdentityTypeRunner        int16 = 4
+	dbIdentityTypeApp           int16 = 5
+	dbIdentityTypeAgentInstance int16 = 6
 )
 
 var identityTypeMappings = []struct {
@@ -21,6 +22,7 @@ var identityTypeMappings = []struct {
 	{proto: identityv1.IdentityType_IDENTITY_TYPE_AGENT, db: dbIdentityTypeAgent},
 	{proto: identityv1.IdentityType_IDENTITY_TYPE_RUNNER, db: dbIdentityTypeRunner},
 	{proto: identityv1.IdentityType_IDENTITY_TYPE_APP, db: dbIdentityTypeApp},
+	{proto: identityv1.IdentityType_IDENTITY_TYPE_AGENT_INSTANCE, db: dbIdentityTypeAgentInstance},
 }
 
 func identityTypeFromProto(value identityv1.IdentityType) (int16, error) {

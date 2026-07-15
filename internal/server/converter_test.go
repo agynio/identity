@@ -17,6 +17,7 @@ func TestIdentityTypeRoundTrip(t *testing.T) {
 		{name: "agent", proto: identityv1.IdentityType_IDENTITY_TYPE_AGENT, db: 2},
 		{name: "runner", proto: identityv1.IdentityType_IDENTITY_TYPE_RUNNER, db: 4},
 		{name: "app", proto: identityv1.IdentityType_IDENTITY_TYPE_APP, db: 5},
+		{name: "agent_instance", proto: identityv1.IdentityType_IDENTITY_TYPE_AGENT_INSTANCE, db: 6},
 	}
 
 	for _, testCase := range testCases {

@@ -39,7 +39,7 @@ jobs:
           version: 1.66.0
 
       - name: Prepare generated sources
-        run: buf generate buf.build/agynio/api --path agynio/api/identity/v1 --path agynio/api/authorization/v1
+        run: buf generate https://github.com/agynio/api.git#branch=noa/issue-161-identity-foundation --path proto/agynio/api/identity/v1 --path proto/agynio/api/authorization/v1
 
       - name: Build source binary for DevSpace
         run: |
