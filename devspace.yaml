@@ -183,8 +183,6 @@ dev:
         logs:
           enabled: true
           lastLines: 200
-    ports:
-      - port: "50051"
 
   e2e-runner:
     namespace: ${IDENTITY_NAMESPACE}
