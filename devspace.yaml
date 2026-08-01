@@ -159,7 +159,6 @@ dev:
     namespace: ${IDENTITY_NAMESPACE}
     labelSelector:
       app.kubernetes.io/name: identity
-      app.kubernetes.io/instance: identity
     containers:
       identity:
         container: identity
