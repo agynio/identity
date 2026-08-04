@@ -44,3 +44,22 @@ func (s *Server) checkPermission(ctx context.Context, identityID uuid.UUID, rela
 	}
 	return response.GetAllowed(), nil
 }
+
+// optionalIdentityFromContext reports the caller when one is present. Absence
+// means an owner service reaching Identity over the mesh rather than a client
+// through the Gateway; a malformed identity is still an error.
+func optionalIdentityFromContext(ctx context.Context) (uuid.UUID, bool, error) {
+	md, ok := metadata.FromIncomingContext(ctx)
+	if !ok {
+		return uuid.Nil, false, nil
+	}
+	values := md.Get(identityHeaderKey)
+	if len(values) == 0 || strings.TrimSpace(values[0]) == "" {
+		return uuid.Nil, false, nil
+	}
+	id, err := uuid.Parse(strings.TrimSpace(values[0]))
+	if err != nil {
+		return uuid.Nil, false, err
+	}
+	return id, true, nil
+}

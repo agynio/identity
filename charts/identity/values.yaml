@@ -159,3 +159,14 @@ metrics:
         path: /metrics
         interval: ""
         scrapeTimeout: ""
+
+# BatchGetNicknames serves an owner service that carries no identity, so this
+# names which services may reach it. Without it any workload in the mesh could
+# read the organization's handles by omitting an identity.
+batchGetNicknamesPolicy:
+  enabled: true
+  principals:
+    - agents
+    - gateway
+    - threads
+    - users

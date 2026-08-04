@@ -154,7 +154,11 @@ func (s *Server) ResolveNickname(ctx context.Context, req *identityv1.ResolveNic
 }
 
 func (s *Server) BatchGetNicknames(ctx context.Context, req *identityv1.BatchGetNicknamesRequest) (*identityv1.BatchGetNicknamesResponse, error) {
-	callerID, err := identityIDFromContext(ctx)
+	// An owner service resolving names for its own resource carries no identity;
+	// can_view_threads is owner-or-cluster-admin, which no agent instance can
+	// hold, so holding it to that made every handle unresolvable. An
+	// AuthorizationPolicy narrows the unidentified path to those services.
+	callerID, hasCaller, err := optionalIdentityFromContext(ctx)
 	if err != nil {
 		return nil, status.Errorf(codes.Unauthenticated, "identity not available: %v", err)
 	}
@@ -164,12 +168,14 @@ func (s *Server) BatchGetNicknames(ctx context.Context, req *identityv1.BatchGet
 		return nil, status.Errorf(codes.InvalidArgument, "organization_id: %v", err)
 	}
 
-	allowed, err := s.checkPermission(ctx, callerID, "can_view_threads", organizationID)
-	if err != nil {
-		return nil, status.Errorf(codes.Internal, "authorization check: %v", err)
-	}
-	if !allowed {
-		return nil, status.Error(codes.PermissionDenied, "missing permission to view thread nicknames")
+	if hasCaller {
+		allowed, err := s.checkPermission(ctx, callerID, "can_view_threads", organizationID)
+		if err != nil {
+			return nil, status.Errorf(codes.Internal, "authorization check: %v", err)
+		}
+		if !allowed {
+			return nil, status.Error(codes.PermissionDenied, "missing permission to view thread nicknames")
+		}
 	}
 
 	identityIDs := req.GetIdentityIds()
@@ -198,8 +204,8 @@ func (s *Server) BatchGetNicknames(ctx context.Context, req *identityv1.BatchGet
 			continue
 		}
 		entries = append(entries, &identityv1.NicknameEntry{
-			IdentityId:      id.String(),
-			Nickname:        nickname.Nickname,
+			IdentityId:     id.String(),
+			Nickname:       nickname.Nickname,
 			InstanceSuffix: nickname.InstanceSuffix,
 		})
 	}

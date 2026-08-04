@@ -1,0 +1,28 @@
+{{- if .Values.batchGetNicknamesPolicy.enabled }}
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: {{ .Release.Name }}-batch-get-nicknames
+  labels:
+    app.kubernetes.io/name: {{ .Chart.Name }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ .Chart.Name }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  action: DENY
+  rules:
+    - from:
+        - source:
+            notPrincipals:
+              {{- range .Values.batchGetNicknamesPolicy.principals }}
+              - "cluster.local/ns/{{ $.Release.Namespace }}/sa/{{ . }}"
+              {{- end }}
+      to:
+        - operation:
+            methods:
+              - POST
+            paths:
+              - /agynio.api.identity.v1.IdentityService/BatchGetNicknames
+{{- end }}

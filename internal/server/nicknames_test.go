@@ -109,9 +109,24 @@ func TestBatchGetNicknamesOmitsMissing(t *testing.T) {
 	require.Equal(t, fmt.Sprintf("%s%s", organizationObjectPrefix, organizationID.String()), auth.lastRequest.GetTupleKey().GetObject())
 }
 
-func TestBatchGetNicknamesMissingIdentityHeader(t *testing.T) {
+// An owner service resolving names for its own resource carries no identity.
+// can_view_threads is owner-or-cluster-admin, which no agent instance holds, so
+// demanding a caller here made every sender handle unresolvable.
+func TestBatchGetNicknamesServesTheOwnerService(t *testing.T) {
+	server := New(&fakeStore{}, &fakeAuthClient{allowed: false})
+	_, err := server.BatchGetNicknames(context.Background(), &identityv1.BatchGetNicknamesRequest{
+		OrganizationId: uuid.NewString(),
+		IdentityIds:    []string{uuid.NewString()},
+	})
+	if err != nil {
+		t.Fatalf("expected the owner service to be served, got %v", err)
+	}
+}
+
+func TestBatchGetNicknamesRejectsAMalformedIdentity(t *testing.T) {
 	server := New(&fakeStore{}, &fakeAuthClient{allowed: true})
-	_, err := server.BatchGetNicknames(context.Background(), &identityv1.BatchGetNicknamesRequest{OrganizationId: uuid.NewString()})
+	ctx := metadata.NewIncomingContext(context.Background(), metadata.Pairs(identityHeaderKey, "not-a-uuid"))
+	_, err := server.BatchGetNicknames(ctx, &identityv1.BatchGetNicknamesRequest{OrganizationId: uuid.NewString()})
 	requireStatusCode(t, err, codes.Unauthenticated)
 }
 
