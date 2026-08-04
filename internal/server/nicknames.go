@@ -164,12 +164,16 @@ func (s *Server) BatchGetNicknames(ctx context.Context, req *identityv1.BatchGet
 		return nil, status.Errorf(codes.InvalidArgument, "organization_id: %v", err)
 	}
 
-	allowed, err := s.checkPermission(ctx, callerID, "can_view_threads", organizationID)
+	// Membership, not can_view_threads: that resolves to owner-or-cluster-admin,
+	// so no ordinary member of the organization could read its handles -- nor
+	// could an agent instance, which is what leaves a raw identity id in front
+	// of the model and "unknown participant" in the chat UI.
+	allowed, err := s.checkPermission(ctx, callerID, "member", organizationID)
 	if err != nil {
 		return nil, status.Errorf(codes.Internal, "authorization check: %v", err)
 	}
 	if !allowed {
-		return nil, status.Error(codes.PermissionDenied, "missing permission to view thread nicknames")
+		return nil, status.Error(codes.PermissionDenied, "not a member of the organization")
 	}
 
 	identityIDs := req.GetIdentityIds()
