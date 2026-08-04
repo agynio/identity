@@ -104,7 +104,9 @@ func TestBatchGetNicknamesOmitsMissing(t *testing.T) {
 	require.Equal(t, "runner", response.Entries[0].GetNickname())
 
 	require.NotNil(t, auth.lastRequest)
-	require.Equal(t, "can_view_threads", auth.lastRequest.GetTupleKey().GetRelation())
+	// Membership: can_view_threads is owner-or-cluster-admin, so no ordinary
+	// member of the organization could read its handles.
+	require.Equal(t, "member", auth.lastRequest.GetTupleKey().GetRelation())
 	require.Equal(t, fmt.Sprintf("%s%s", identityObjectPrefix, callerID.String()), auth.lastRequest.GetTupleKey().GetUser())
 	require.Equal(t, fmt.Sprintf("%s%s", organizationObjectPrefix, organizationID.String()), auth.lastRequest.GetTupleKey().GetObject())
 }
