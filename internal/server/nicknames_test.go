@@ -20,6 +20,8 @@ type fakeAuthClient struct {
 	allowed     bool
 	lastRequest *authorizationv1.CheckRequest
 	err         error
+	writes      []*authorizationv1.TupleKey
+	writeErr    error
 }
 
 func (f *fakeAuthClient) Check(_ context.Context, req *authorizationv1.CheckRequest, _ ...grpc.CallOption) (*authorizationv1.CheckResponse, error) {
@@ -28,6 +30,14 @@ func (f *fakeAuthClient) Check(_ context.Context, req *authorizationv1.CheckRequ
 		return nil, f.err
 	}
 	return &authorizationv1.CheckResponse{Allowed: f.allowed}, nil
+}
+
+func (f *fakeAuthClient) Write(_ context.Context, req *authorizationv1.WriteRequest, _ ...grpc.CallOption) (*authorizationv1.WriteResponse, error) {
+	if f.writeErr != nil {
+		return nil, f.writeErr
+	}
+	f.writes = append(f.writes, req.GetWrites()...)
+	return &authorizationv1.WriteResponse{}, nil
 }
 
 type fakeStore struct {
@@ -39,9 +49,18 @@ type fakeStore struct {
 	lastNickname       string
 	lastInstanceSuffix *string
 	resolution         store.NicknameResolution
+	registerErr        error
 }
 
 func (f *fakeStore) RegisterIdentity(context.Context, uuid.UUID, int16) error {
+	return f.registerErr
+}
+
+func (f *fakeStore) SetIdentityType(_ context.Context, identityID uuid.UUID, identityType int16) error {
+	if f.identityTypes == nil {
+		f.identityTypes = map[uuid.UUID]int16{}
+	}
+	f.identityTypes[identityID] = identityType
 	return nil
 }
 

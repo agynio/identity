@@ -31,6 +31,20 @@ func (s *Store) RegisterIdentity(ctx context.Context, identityID uuid.UUID, iden
 	return nil
 }
 
+// SetIdentityType rewrites the type of an already-registered identity. Only the
+// platform admin identity uses it: installs that predate its own type carry it
+// as a user, and nothing else would ever correct the row.
+func (s *Store) SetIdentityType(ctx context.Context, identityID uuid.UUID, identityType int16) error {
+	tag, err := s.pool.Exec(ctx, `UPDATE identities SET identity_type = $2 WHERE identity_id = $1`, identityID, identityType)
+	if err != nil {
+		return err
+	}
+	if tag.RowsAffected() == 0 {
+		return NotFound("identity")
+	}
+	return nil
+}
+
 func (s *Store) GetIdentityType(ctx context.Context, identityID uuid.UUID) (int16, error) {
 	var identityType int16
 	if err := s.pool.QueryRow(ctx, `SELECT identity_type FROM identities WHERE identity_id = $1`, identityID).Scan(&identityType); err != nil {
