@@ -3,7 +3,6 @@ package server
 import (
 	"context"
 	"errors"
-	"fmt"
 
 	authorizationv1 "github.com/agynio/identity/.gen/go/agynio/api/authorization/v1"
 	identityv1 "github.com/agynio/identity/.gen/go/agynio/api/identity/v1"
@@ -49,69 +48,10 @@ func (s *Server) RegisterIdentity(ctx context.Context, req *identityv1.RegisterI
 	if err != nil {
 		return nil, status.Errorf(codes.InvalidArgument, "identity_type: %v", err)
 	}
-	registerErr := s.store.RegisterIdentity(ctx, identityID, identityType)
-	// A platform identity is a cluster admin by definition, so the grant is
-	// ensured here rather than by whoever configured the identity. It is
-	// re-registered on every Gateway start, and the grant converges on each
-	// one, so a tuple lost out from under it is repaired without an operator.
-	if identityType == dbIdentityTypePlatform && (registerErr == nil || isAlreadyExists(registerErr)) {
-		// Installs that predate the platform type carry this identity as a
-		// user, and nothing else would ever correct the row.
-		if isAlreadyExists(registerErr) {
-			if err := s.adoptPlatformIdentity(ctx, identityID); err != nil {
-				return nil, status.Errorf(codes.Internal, "adopt platform identity: %v", err)
-			}
-		}
-		if err := s.grantClusterAdmin(ctx, identityID); err != nil {
-			return nil, status.Errorf(codes.Internal, "grant cluster admin: %v", err)
-		}
-	}
-	if registerErr != nil {
-		return nil, toStatusError(registerErr)
+	if err := s.store.RegisterIdentity(ctx, identityID, identityType); err != nil {
+		return nil, toStatusError(err)
 	}
 	return &identityv1.RegisterIdentityResponse{}, nil
-}
-
-// adoptPlatformIdentity rewrites an existing record to the platform type. Only
-// widens from the user type the Gateway used to register it with: anything else
-// under this ID is someone else's identity and is left alone.
-func (s *Server) adoptPlatformIdentity(ctx context.Context, identityID uuid.UUID) error {
-	current, err := s.store.GetIdentityType(ctx, identityID)
-	if err != nil {
-		return err
-	}
-	if current == dbIdentityTypePlatform {
-		return nil
-	}
-	if current != dbIdentityTypeUser {
-		return fmt.Errorf("identity %s is registered as type %d, not a platform identity", identityID, current)
-	}
-	return s.store.SetIdentityType(ctx, identityID, dbIdentityTypePlatform)
-}
-
-// grantClusterAdmin writes the platform admin identity's admin relation on
-// cluster:global through the service that owns it. Writing an existing tuple is
-// not an error, so this is safe to repeat.
-func (s *Server) grantClusterAdmin(ctx context.Context, identityID uuid.UUID) error {
-	if s.authorizationClient == nil {
-		return errors.New("authorization client not configured")
-	}
-	_, err := s.authorizationClient.Write(ctx, &authorizationv1.WriteRequest{
-		Writes: []*authorizationv1.TupleKey{{
-			User:     identityObjectPrefix + identityID.String(),
-			Relation: adminRelation,
-			Object:   clusterObject,
-		}},
-	})
-	if err != nil && status.Code(err) == codes.AlreadyExists {
-		return nil
-	}
-	return err
-}
-
-func isAlreadyExists(err error) bool {
-	var exists *store.AlreadyExistsError
-	return errors.As(err, &exists)
 }
 
 func (s *Server) GetIdentityType(ctx context.Context, req *identityv1.GetIdentityTypeRequest) (*identityv1.GetIdentityTypeResponse, error) {

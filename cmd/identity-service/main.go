@@ -16,6 +16,7 @@ import (
 	"github.com/agynio/identity/internal/db"
 	"github.com/agynio/identity/internal/server"
 	"github.com/agynio/identity/internal/store"
+	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5/pgxpool"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
@@ -56,8 +57,27 @@ func run() error {
 	}
 	defer authConn.Close()
 
+	identityStore := store.New(pool)
+	authorizationClient := authorizationv1.NewAuthorizationServiceClient(authConn)
+
 	grpcServer := grpc.NewServer()
-	identityv1.RegisterIdentityServiceServer(grpcServer, server.New(store.New(pool), authorizationv1.NewAuthorizationServiceClient(authConn)))
+	identityv1.RegisterIdentityServiceServer(grpcServer, server.New(identityStore, authorizationClient))
+
+	// The platform admin identity comes from configuration because the
+	// controller that provisions everything else authenticates as it, so
+	// nothing can create it through an API. This service owns the record and
+	// the cluster admin relation, and converges both in the background --
+	// nothing here waits on it, and every request is served meanwhile.
+	if cfg.PlatformIdentityID != "" {
+		platformIdentityID, err := uuid.Parse(cfg.PlatformIdentityID)
+		if err != nil {
+			return fmt.Errorf("PLATFORM_IDENTITY_ID: %w", err)
+		}
+		go server.NewPlatformIdentity(identityStore, authorizationClient).
+			EnsureWithRetry(ctx, platformIdentityID, func(format string, args ...any) {
+				log.Printf(format, args...)
+			})
+	}
 
 	lis, err := net.Listen("tcp", cfg.GRPCAddress)
 	if err != nil {
