@@ -3,12 +3,17 @@ package config
 import (
 	"fmt"
 	"os"
+	"strings"
 )
 
 type Config struct {
 	GRPCAddress          string
 	DatabaseURL          string
 	AuthorizationAddress string
+	// PlatformIdentityID is the platform admin identity this service registers
+	// and grants cluster admin at startup. Empty leaves both alone, which is
+	// what an install with no provisioning wants.
+	PlatformIdentityID string
 }
 
 func FromEnv() (Config, error) {
@@ -17,6 +22,7 @@ func FromEnv() (Config, error) {
 	if cfg.GRPCAddress == "" {
 		cfg.GRPCAddress = ":50051"
 	}
+	cfg.PlatformIdentityID = strings.TrimSpace(os.Getenv("PLATFORM_IDENTITY_ID"))
 	cfg.DatabaseURL = os.Getenv("DATABASE_URL")
 	if cfg.DatabaseURL == "" {
 		return Config{}, fmt.Errorf("DATABASE_URL must be set")
