@@ -14,6 +14,8 @@ const (
 	identityHeaderKey        = "x-identity-id"
 	identityObjectPrefix     = "identity:"
 	organizationObjectPrefix = "organization:"
+	clusterObject            = "cluster:global"
+	adminRelation            = "admin"
 )
 
 func identityIDFromContext(ctx context.Context) (uuid.UUID, error) {
