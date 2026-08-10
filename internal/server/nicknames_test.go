@@ -130,9 +130,36 @@ func TestBatchGetNicknamesOmitsMissing(t *testing.T) {
 	require.Equal(t, fmt.Sprintf("%s%s", organizationObjectPrefix, organizationID.String()), auth.lastRequest.GetTupleKey().GetObject())
 }
 
-func TestBatchGetNicknamesMissingIdentityHeader(t *testing.T) {
+// The Expose service derives an exposure address from an instance's handle, and
+// its reconciler does so with no caller behind it. This service is internal-only
+// and unreachable through the Gateway, so an identity-less caller is a platform
+// service and is served as one.
+func TestBatchGetNicknamesServesTheInternalCallerWithoutAnIdentity(t *testing.T) {
+	instanceID := uuid.New()
+	suffix := "research"
+	fake := &fakeStore{batchNicknames: map[uuid.UUID]store.NicknameEntry{
+		instanceID: {Nickname: "bob", InstanceSuffix: &suffix},
+	}}
+	// An authorization client that denies everything: consulting it at all would
+	// be the bug.
+	server := New(fake, &fakeAuthClient{allowed: false})
+
+	resp, err := server.BatchGetNicknames(context.Background(), &identityv1.BatchGetNicknamesRequest{
+		OrganizationId: uuid.NewString(),
+		IdentityIds:    []string{instanceID.String()},
+	})
+	require.NoError(t, err)
+	require.Len(t, resp.GetEntries(), 1)
+	require.Equal(t, "bob", resp.GetEntries()[0].GetNickname())
+	require.Equal(t, "research", resp.GetEntries()[0].GetInstanceSuffix())
+}
+
+// Only the absence of an identity is meaningful. One that is present and
+// malformed is still rejected.
+func TestBatchGetNicknamesRejectsAMalformedIdentity(t *testing.T) {
 	server := New(&fakeStore{}, &fakeAuthClient{allowed: true})
-	_, err := server.BatchGetNicknames(context.Background(), &identityv1.BatchGetNicknamesRequest{OrganizationId: uuid.NewString()})
+	ctx := metadata.NewIncomingContext(context.Background(), metadata.Pairs(identityHeaderKey, "not-a-uuid"))
+	_, err := server.BatchGetNicknames(ctx, &identityv1.BatchGetNicknamesRequest{OrganizationId: uuid.NewString()})
 	requireStatusCode(t, err, codes.Unauthenticated)
 }
 

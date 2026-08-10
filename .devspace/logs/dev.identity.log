@@ -1,0 +1,7 @@
+{"level":"info","msg":"Inject devspacehelper...","time":"2026-08-04T12:38:11+02:00"}
+{"level":"info","msg":"Successfully injected devspacehelper into pod platform/identity-5cb896db4-bfg84","time":"2026-08-04T12:38:12+02:00"}
+{"level":"info","msg":"Start syncing","time":"2026-08-04T12:38:12+02:00"}
+{"level":"info","msg":"Downstream - Initial sync completed","time":"2026-08-04T12:38:12+02:00"}
+{"level":"info","msg":"Upstream - Upload 37 create change(s) (Uncompressed ~114.52 KB)","time":"2026-08-04T12:38:13+02:00"}
+{"level":"info","msg":"Upstream - Successfully processed 37 change(s)","time":"2026-08-04T12:38:13+02:00"}
+{"level":"info","msg":"Upstream - Initial sync completed","time":"2026-08-04T12:38:15+02:00"}

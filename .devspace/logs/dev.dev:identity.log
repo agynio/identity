@@ -1,0 +1,656 @@
+{"level":"info","msg":"dev:identity Waiting for pod to become ready...","time":"2026-08-01T01:28:55+02:00"}
+{"level":"warning","msg":"dev:identity Pod threads-5b7cf54c7c-q4d7c: Readiness probe failed: dial tcp 10.42.0.15:50051: connect: connection refused (Unhealthy)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod agents-orchestrator-7b5f9bf945-x6547: Back-off restarting failed container agents-orchestrator in pod agents-orchestrator-7b5f9bf945-x6547_platform(10ae67f6-1ca6-427e-9300-405a99aba166) (BackOff)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod threads-5dcf65b76d-dwhk8: Back-off restarting failed container threads in pod threads-5dcf65b76d-dwhk8_platform(86b305a0-80cb-40df-b6a1-2223d003d7bb) (BackOff)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod k8s-runner-75ffdb9fd-m4k4b: Back-off restarting failed container k8s-runner in pod k8s-runner-75ffdb9fd-m4k4b_platform(75e2c2f2-b43a-4dd5-a4a3-d913580c6e33) (BackOff)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod threads-5dcf65b76d-dwhk8: Readiness probe failed: dial tcp 10.42.0.14:50051: connect: connection refused (Unhealthy)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod k8s-runner-6497c6d5f7-s8tnp: Back-off restarting failed container k8s-runner in pod k8s-runner-6497c6d5f7-s8tnp_platform(945983d2-49b7-44c0-b7ee-d3b0ecbe940d) (BackOff)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod threads-64c9c4cb6d-jfzzz: Readiness probe failed: dial tcp 10.42.0.6:50051: connect: connection refused (Unhealthy)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod threads-64c9c4cb6d-jfzzz: Liveness probe failed: dial tcp 10.42.0.6:50051: connect: connection refused (Unhealthy)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod agents-56b9bfdc59-l27rf: Back-off restarting failed container agents in pod agents-56b9bfdc59-l27rf_platform(786748b7-edbf-43a7-a5fa-5dd17381824e) (BackOff)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod agents-orchestrator-7b5f9bf945-962jj: Back-off restarting failed container agents-orchestrator in pod agents-orchestrator-7b5f9bf945-962jj_platform(8e2c554b-6bf8-42bc-a549-40107725b3df) (BackOff)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod k8s-runner-75ffdb9fd-m4k4b: Readiness probe failed: dial tcp 10.42.0.253:50051: connect: connection refused (Unhealthy)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod k8s-runner-75ffdb9fd-m4k4b: Liveness probe failed: dial tcp 10.42.0.253:50051: connect: connection refused (Unhealthy)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod terminal-proxy-7fc9b6d59-kfrfh: Failed to pull image \"ghcr.io/agynio/terminal-proxy:0.1.0\": rpc error: code = NotFound desc = failed to pull and unpack image \"ghcr.io/agynio/terminal-proxy:0.1.0\": failed to resolve reference \"ghcr.io/agynio/terminal-proxy:0.1.0\": ghcr.io/agynio/terminal-proxy:0.1.0: not found (Failed)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod terminal-proxy-7fc9b6d59-kfrfh: Error: ErrImagePull (Failed)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod terminal-proxy-7fc9b6d59-kfrfh: Error: ImagePullBackOff (Failed)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod runners-ccdc86bf5-w4csj: Liveness probe failed: dial tcp 10.42.0.241:50051: connect: connection refused (Unhealthy)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod runners-ccdc86bf5-w4csj: Readiness probe failed: dial tcp 10.42.0.241:50051: connect: connection refused (Unhealthy)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod threads-64c9c4cb6d-6zp7k: Back-off restarting failed container threads in pod threads-64c9c4cb6d-6zp7k_platform(e3a08bb6-780f-4201-b474-d1c4ad714428) (BackOff)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod notifications-redis-replicas-1: Liveness probe failed: \nCould not connect to Redis at notifications-redis-master-0.notifications-redis-headless.platform.svc.cluster.local:6379: Name or service not known\n (Unhealthy)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod notifications-redis-replicas-2: Readiness probe failed: \nCould not connect to Redis at notifications-redis-master-0.notifications-redis-headless.platform.svc.cluster.local:6379: Name or service not known\n (Unhealthy)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod notifications-redis-replicas-1: Readiness probe failed: \nCould not connect to Redis at notifications-redis-master-0.notifications-redis-headless.platform.svc.cluster.local:6379: Name or service not known\n (Unhealthy)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod notifications-redis-replicas-2: Liveness probe failed: \nCould not connect to Redis at notifications-redis-master-0.notifications-redis-headless.platform.svc.cluster.local:6379: Name or service not known\n (Unhealthy)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod notifications-redis-replicas-0: Readiness probe failed: \nCould not connect to Redis at notifications-redis-master-0.notifications-redis-headless.platform.svc.cluster.local:6379: Name or service not known\n (Unhealthy)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod notifications-redis-replicas-0: Liveness probe failed: \nCould not connect to Redis at notifications-redis-master-0.notifications-redis-headless.platform.svc.cluster.local:6379: Name or service not known\n (Unhealthy)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod notifications-898bf75d6-nj2jj: Readiness probe failed: dial tcp 10.42.0.209:50051: connect: connection refused (Unhealthy)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod notifications-898bf75d6-nj2jj: Liveness probe failed: dial tcp 10.42.0.209:50051: connect: connection refused (Unhealthy)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod threads-64c9c4cb6d-6zp7k: Liveness probe failed: dial tcp 10.42.0.208:50051: connect: connection refused (Unhealthy)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod gateway-6cb9644d88-v4xzc: Back-off restarting failed container gateway in pod gateway-6cb9644d88-v4xzc_platform(ed7e7d55-3307-4653-aa56-4e63d399042c) (BackOff)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod terminal-proxy-656dc7fc8-96hft: Back-off restarting failed container terminal-proxy in pod terminal-proxy-656dc7fc8-96hft_platform(dc7a4281-e228-4703-ad3f-7c87376a2921) (BackOff)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod k8s-runner-6497c6d5f7-zvl4j: Back-off restarting failed container k8s-runner in pod k8s-runner-6497c6d5f7-zvl4j_platform(9b56d437-da1b-46c1-a3d4-55dbeb02f5b3) (BackOff)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod authorization-8679488b9-svnfq: Back-off restarting failed container authorization in pod authorization-8679488b9-svnfq_platform(a8511301-ead4-4014-8438-1044082cb012) (BackOff)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod agents-orchestrator-85996d7797-qshzw: Back-off restarting failed container agents-orchestrator in pod agents-orchestrator-85996d7797-qshzw_platform(6bf596f8-c9c6-44a3-a553-5ae6aaecce0d) (BackOff)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod llm-proxy-5cbd4d7b4c-sb7dk: Back-off restarting failed container llm-proxy in pod llm-proxy-5cbd4d7b4c-sb7dk_platform(6a529a06-957b-4481-882b-cb848709bc49) (BackOff)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod runners-6bf6c4f4f7-gpf4v: Back-off restarting failed container runners in pod runners-6bf6c4f4f7-gpf4v_platform(7ce3c9dc-5267-4fd2-8b00-b3e0d26c2616) (BackOff)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod ziti-management-577d486458-x2dtk: Back-off restarting failed container ziti-management in pod ziti-management-577d486458-x2dtk_platform(d9a462ed-0061-428f-88a8-a12962c9f8e4) (BackOff)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod agents-56cb798b58-65fm2: Back-off restarting failed container agents in pod agents-56cb798b58-65fm2_platform(e4f159e9-61e8-45d5-b9bc-855eeec72bf9) (BackOff)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod groups-6f5bd64df9-ng8sg: Back-off restarting failed container groups in pod groups-6f5bd64df9-ng8sg_platform(1045cf3d-3255-4dbc-aae0-6422883b157b) (BackOff)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod metering-5dcbcbf47f-sjlqd: Back-off restarting failed container metering in pod metering-5dcbcbf47f-sjlqd_platform(c05b5c75-a709-4006-ac0e-75f10be46737) (BackOff)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod threads-5d99c86969-k5hvr: Back-off restarting failed container threads in pod threads-5d99c86969-k5hvr_platform(b24d5a0d-65b4-4b0a-bf77-c1930e42e1ce) (BackOff)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod chat-7db56495d-k4d9f: Back-off restarting failed container chat in pod chat-7db56495d-k4d9f_platform(498067bb-41d4-47f2-980e-ef38855e0eef) (BackOff)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod organizations-75cfb66789-t5hdk: Back-off restarting failed container organizations in pod organizations-75cfb66789-t5hdk_platform(a3a2b916-c879-4956-b695-b4395ab9fbdb) (BackOff)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod networks-6688d7f954-wpg54: Back-off restarting failed container networks in pod networks-6688d7f954-wpg54_platform(1dda9c30-957d-420d-b6f7-f26d86ff8c04) (BackOff)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod identity-b658c6f49-lm4m9: Back-off restarting failed container identity in pod identity-b658c6f49-lm4m9_platform(02851d1e-b3bd-4b86-bb88-c8acaf8af16f) (BackOff)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod llm-785cd77f88-947xr: Back-off restarting failed container llm in pod llm-785cd77f88-947xr_platform(19c4a702-5aca-46ed-b53b-6560312e6edf) (BackOff)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod apps-7fc5b8dbc4-vg79p: Back-off restarting failed container apps in pod apps-7fc5b8dbc4-vg79p_platform(a210054d-4e6b-4806-a6a8-511a2ece51d8) (BackOff)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod threads-64c9c4cb6d-6zp7k: Readiness probe failed: dial tcp 10.42.0.208:50051: connect: connection refused (Unhealthy)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod tracing-666cc788b5-4vdwk: Back-off restarting failed container tracing in pod tracing-666cc788b5-4vdwk_platform(f349ed25-3725-4680-b65f-98d9fd8efd7a) (BackOff)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod users-855b5d4546-bs48n: Back-off restarting failed container users in pod users-855b5d4546-bs48n_platform(af392a0a-6ab0-4f8b-9d46-ded40e3b0fa6) (BackOff)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod files-65464b7d7f-2vd5p: Back-off restarting failed container files in pod files-65464b7d7f-2vd5p_platform(fedff796-9f8b-445c-a17a-4e65b8388aa8) (BackOff)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod secrets-57c89cfcbf-gvvrs: Back-off restarting failed container secrets in pod secrets-57c89cfcbf-gvvrs_platform(7df26ecd-957e-435e-95b9-bb4e9904eb27) (BackOff)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity Pod egress-7d6db4bf8f-vkdpq: Back-off restarting failed container egress in pod egress-7d6db4bf8f-vkdpq_platform(a1fdb479-a13d-47d4-a6df-f776f32ce9b1) (BackOff)","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:29:06+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:29:16+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:29:27+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:29:37+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:29:48+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:29:58+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:30:09+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:30:19+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:30:30+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:30:40+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:30:51+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:31:01+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:31:12+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:31:22+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:31:33+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:31:43+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:31:54+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:32:04+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:32:15+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:32:25+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:32:36+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:32:46+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:32:57+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:33:07+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:33:18+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:33:28+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:33:39+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:33:49+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:33:59+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:34:10+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:34:20+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:34:30+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:34:41+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:34:51+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:35:02+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:35:12+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:35:23+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:35:33+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:35:44+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:35:54+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:36:05+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:36:15+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:36:26+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:36:36+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:36:47+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:36:57+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:37:08+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:37:18+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:37:29+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:37:39+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:37:50+02:00"}
+{"level":"warning","msg":"dev:identity Pod files-65464b7d7f-r5m5f: Readiness probe failed: timeout: health rpc did not complete within 1s (Unhealthy)","time":"2026-08-01T01:38:00+02:00"}
+{"level":"warning","msg":"dev:identity Pod chat-7db56495d-k4d9f: Liveness probe failed: dial tcp 10.42.0.217:50051: i/o timeout (Unhealthy)","time":"2026-08-01T01:38:00+02:00"}
+{"level":"warning","msg":"dev:identity Pod llm-proxy-857945556b-swdw9: Liveness probe failed: dial tcp 10.42.0.248:8080: i/o timeout (Unhealthy)","time":"2026-08-01T01:38:00+02:00"}
+{"level":"warning","msg":"dev:identity Pod authorization-644df7546c-rjpv4: Liveness probe failed: dial tcp 10.42.0.232:50051: i/o timeout (Unhealthy)","time":"2026-08-01T01:38:00+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:38:00+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:38:11+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:38:21+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:38:32+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:38:42+02:00"}
+{"level":"warning","msg":"dev:identity DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2026-08-01T01:38:53+02:00"}
+{"level":"info","msg":"dev:identity Waiting for pod to become ready...","time":"2026-08-04T12:38:09+02:00"}
+{"level":"info","msg":"dev:identity Selected pod identity-5cb896db4-bfg84","time":"2026-08-04T12:38:10+02:00"}
+{"level":"info","msg":"dev:identity sync  Sync started on: ./ \u003c-\u003e /opt/app/data","time":"2026-08-04T12:38:12+02:00"}
+{"level":"info","msg":"dev:identity sync  Waiting for initial sync to complete","time":"2026-08-04T12:38:12+02:00"}
+{"level":"info","msg":"dev:identity sync  Initial sync completed","time":"2026-08-04T12:38:15+02:00"}
+{"level":"info","msg":"dev:identity logs  Streaming logs of pod:container identity-5cb896db4-bfg84:identity","time":"2026-08-04T12:38:15+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: Waiting for synced identity source...","time":"2026-08-04T12:38:15+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + echo Waiting for synced identity source...","time":"2026-08-04T12:38:15+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=0","time":"2026-08-04T12:38:15+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:15+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:15+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=1","time":"2026-08-04T12:38:15+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 1 -ge 300 ]","time":"2026-08-04T12:38:15+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:15+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:15+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=2","time":"2026-08-04T12:38:15+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 2 -ge 300 ]","time":"2026-08-04T12:38:15+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:15+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:15+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=3","time":"2026-08-04T12:38:15+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 3 -ge 300 ]","time":"2026-08-04T12:38:15+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:15+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:15+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=4","time":"2026-08-04T12:38:15+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 4 -ge 300 ]","time":"2026-08-04T12:38:15+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:15+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:15+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=5","time":"2026-08-04T12:38:15+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 5 -ge 300 ]","time":"2026-08-04T12:38:15+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:15+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:15+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=6","time":"2026-08-04T12:38:16+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 6 -ge 300 ]","time":"2026-08-04T12:38:16+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:16+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:16+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=7","time":"2026-08-04T12:38:17+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 7 -ge 300 ]","time":"2026-08-04T12:38:17+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:17+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:17+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=8","time":"2026-08-04T12:38:18+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 8 -ge 300 ]","time":"2026-08-04T12:38:18+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:18+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:18+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=9","time":"2026-08-04T12:38:19+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 9 -ge 300 ]","time":"2026-08-04T12:38:19+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:19+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:19+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=10","time":"2026-08-04T12:38:20+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 10 -ge 300 ]","time":"2026-08-04T12:38:20+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:20+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:20+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=11","time":"2026-08-04T12:38:21+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 11 -ge 300 ]","time":"2026-08-04T12:38:21+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:21+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:21+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=12","time":"2026-08-04T12:38:22+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 12 -ge 300 ]","time":"2026-08-04T12:38:22+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:22+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:22+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=13","time":"2026-08-04T12:38:23+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 13 -ge 300 ]","time":"2026-08-04T12:38:23+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:23+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:23+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=14","time":"2026-08-04T12:38:24+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 14 -ge 300 ]","time":"2026-08-04T12:38:24+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:24+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:24+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=15","time":"2026-08-04T12:38:25+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 15 -ge 300 ]","time":"2026-08-04T12:38:25+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:25+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:25+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=16","time":"2026-08-04T12:38:26+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 16 -ge 300 ]","time":"2026-08-04T12:38:26+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:26+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:26+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=17","time":"2026-08-04T12:38:27+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 17 -ge 300 ]","time":"2026-08-04T12:38:27+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:27+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:27+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=18","time":"2026-08-04T12:38:28+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 18 -ge 300 ]","time":"2026-08-04T12:38:28+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:28+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:28+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=19","time":"2026-08-04T12:38:29+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 19 -ge 300 ]","time":"2026-08-04T12:38:29+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:29+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:29+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=20","time":"2026-08-04T12:38:30+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 20 -ge 300 ]","time":"2026-08-04T12:38:30+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:30+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:30+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=21","time":"2026-08-04T12:38:31+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 21 -ge 300 ]","time":"2026-08-04T12:38:31+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:31+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:31+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=22","time":"2026-08-04T12:38:32+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 22 -ge 300 ]","time":"2026-08-04T12:38:32+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:32+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:32+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=23","time":"2026-08-04T12:38:33+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 23 -ge 300 ]","time":"2026-08-04T12:38:33+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:33+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:33+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=24","time":"2026-08-04T12:38:34+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 24 -ge 300 ]","time":"2026-08-04T12:38:34+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:34+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:34+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=25","time":"2026-08-04T12:38:35+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 25 -ge 300 ]","time":"2026-08-04T12:38:35+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:35+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:35+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=26","time":"2026-08-04T12:38:36+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 26 -ge 300 ]","time":"2026-08-04T12:38:36+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:36+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:36+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=27","time":"2026-08-04T12:38:37+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 27 -ge 300 ]","time":"2026-08-04T12:38:37+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:37+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:37+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=28","time":"2026-08-04T12:38:38+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 28 -ge 300 ]","time":"2026-08-04T12:38:38+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:38+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:38+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=29","time":"2026-08-04T12:38:39+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 29 -ge 300 ]","time":"2026-08-04T12:38:39+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:39+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:39+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=30","time":"2026-08-04T12:38:40+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 30 -ge 300 ]","time":"2026-08-04T12:38:40+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:40+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:40+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=31","time":"2026-08-04T12:38:41+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 31 -ge 300 ]","time":"2026-08-04T12:38:41+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:41+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:41+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=32","time":"2026-08-04T12:38:42+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 32 -ge 300 ]","time":"2026-08-04T12:38:42+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:42+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:42+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=33","time":"2026-08-04T12:38:43+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 33 -ge 300 ]","time":"2026-08-04T12:38:43+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:43+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:43+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=34","time":"2026-08-04T12:38:44+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 34 -ge 300 ]","time":"2026-08-04T12:38:44+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:44+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:44+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=35","time":"2026-08-04T12:38:45+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 35 -ge 300 ]","time":"2026-08-04T12:38:45+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:45+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:45+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=36","time":"2026-08-04T12:38:46+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 36 -ge 300 ]","time":"2026-08-04T12:38:46+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:46+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:46+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=37","time":"2026-08-04T12:38:47+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 37 -ge 300 ]","time":"2026-08-04T12:38:47+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:47+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:47+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=38","time":"2026-08-04T12:38:48+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 38 -ge 300 ]","time":"2026-08-04T12:38:48+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:48+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:48+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=39","time":"2026-08-04T12:38:49+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 39 -ge 300 ]","time":"2026-08-04T12:38:49+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:49+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:49+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=40","time":"2026-08-04T12:38:50+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 40 -ge 300 ]","time":"2026-08-04T12:38:50+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:50+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:50+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=41","time":"2026-08-04T12:38:51+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 41 -ge 300 ]","time":"2026-08-04T12:38:51+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:51+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:51+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=42","time":"2026-08-04T12:38:52+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 42 -ge 300 ]","time":"2026-08-04T12:38:52+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:52+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:52+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=43","time":"2026-08-04T12:38:53+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 43 -ge 300 ]","time":"2026-08-04T12:38:53+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:53+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:53+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=44","time":"2026-08-04T12:38:54+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 44 -ge 300 ]","time":"2026-08-04T12:38:54+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:54+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:54+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=45","time":"2026-08-04T12:38:55+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 45 -ge 300 ]","time":"2026-08-04T12:38:55+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:55+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:55+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=46","time":"2026-08-04T12:38:56+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 46 -ge 300 ]","time":"2026-08-04T12:38:56+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:56+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:56+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=47","time":"2026-08-04T12:38:57+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 47 -ge 300 ]","time":"2026-08-04T12:38:57+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:57+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:57+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=48","time":"2026-08-04T12:38:58+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 48 -ge 300 ]","time":"2026-08-04T12:38:58+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:58+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:58+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=49","time":"2026-08-04T12:38:59+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 49 -ge 300 ]","time":"2026-08-04T12:38:59+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:38:59+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:38:59+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=50","time":"2026-08-04T12:39:00+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 50 -ge 300 ]","time":"2026-08-04T12:39:00+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:00+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:00+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=51","time":"2026-08-04T12:39:01+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 51 -ge 300 ]","time":"2026-08-04T12:39:01+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:01+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:01+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=52","time":"2026-08-04T12:39:02+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 52 -ge 300 ]","time":"2026-08-04T12:39:02+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:02+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:02+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=53","time":"2026-08-04T12:39:03+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 53 -ge 300 ]","time":"2026-08-04T12:39:03+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:03+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:03+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=54","time":"2026-08-04T12:39:04+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 54 -ge 300 ]","time":"2026-08-04T12:39:04+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:04+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:04+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=55","time":"2026-08-04T12:39:05+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 55 -ge 300 ]","time":"2026-08-04T12:39:05+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:05+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:05+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=56","time":"2026-08-04T12:39:06+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 56 -ge 300 ]","time":"2026-08-04T12:39:06+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:06+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:06+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=57","time":"2026-08-04T12:39:07+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 57 -ge 300 ]","time":"2026-08-04T12:39:07+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:07+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:07+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=58","time":"2026-08-04T12:39:08+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 58 -ge 300 ]","time":"2026-08-04T12:39:08+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:08+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:08+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=59","time":"2026-08-04T12:39:09+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 59 -ge 300 ]","time":"2026-08-04T12:39:09+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:09+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:09+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=60","time":"2026-08-04T12:39:10+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 60 -ge 300 ]","time":"2026-08-04T12:39:10+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:10+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:10+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=61","time":"2026-08-04T12:39:11+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 61 -ge 300 ]","time":"2026-08-04T12:39:11+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:11+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:11+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=62","time":"2026-08-04T12:39:12+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 62 -ge 300 ]","time":"2026-08-04T12:39:12+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:12+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:12+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=63","time":"2026-08-04T12:39:13+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 63 -ge 300 ]","time":"2026-08-04T12:39:13+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:13+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:13+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=64","time":"2026-08-04T12:39:14+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 64 -ge 300 ]","time":"2026-08-04T12:39:14+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:14+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:14+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=65","time":"2026-08-04T12:39:15+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 65 -ge 300 ]","time":"2026-08-04T12:39:15+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:15+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:15+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=66","time":"2026-08-04T12:39:16+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 66 -ge 300 ]","time":"2026-08-04T12:39:16+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:16+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:16+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=67","time":"2026-08-04T12:39:17+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 67 -ge 300 ]","time":"2026-08-04T12:39:17+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:17+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:17+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=68","time":"2026-08-04T12:39:18+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 68 -ge 300 ]","time":"2026-08-04T12:39:18+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:18+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:18+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=69","time":"2026-08-04T12:39:19+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 69 -ge 300 ]","time":"2026-08-04T12:39:19+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:19+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:19+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=70","time":"2026-08-04T12:39:20+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 70 -ge 300 ]","time":"2026-08-04T12:39:20+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:20+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:20+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=71","time":"2026-08-04T12:39:21+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 71 -ge 300 ]","time":"2026-08-04T12:39:21+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:21+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:21+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=72","time":"2026-08-04T12:39:22+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 72 -ge 300 ]","time":"2026-08-04T12:39:22+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:22+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:22+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=73","time":"2026-08-04T12:39:23+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 73 -ge 300 ]","time":"2026-08-04T12:39:23+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:23+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:23+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=74","time":"2026-08-04T12:39:24+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 74 -ge 300 ]","time":"2026-08-04T12:39:24+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:24+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:24+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=75","time":"2026-08-04T12:39:25+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 75 -ge 300 ]","time":"2026-08-04T12:39:25+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:25+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:25+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=76","time":"2026-08-04T12:39:26+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 76 -ge 300 ]","time":"2026-08-04T12:39:26+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:26+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:26+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=77","time":"2026-08-04T12:39:27+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 77 -ge 300 ]","time":"2026-08-04T12:39:27+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:27+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:27+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=78","time":"2026-08-04T12:39:28+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 78 -ge 300 ]","time":"2026-08-04T12:39:28+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:28+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:28+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=79","time":"2026-08-04T12:39:29+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 79 -ge 300 ]","time":"2026-08-04T12:39:29+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:29+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:29+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=80","time":"2026-08-04T12:39:30+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 80 -ge 300 ]","time":"2026-08-04T12:39:30+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:30+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:30+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=81","time":"2026-08-04T12:39:31+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 81 -ge 300 ]","time":"2026-08-04T12:39:31+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:31+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:31+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=82","time":"2026-08-04T12:39:32+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 82 -ge 300 ]","time":"2026-08-04T12:39:32+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:32+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:32+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=83","time":"2026-08-04T12:39:33+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 83 -ge 300 ]","time":"2026-08-04T12:39:33+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:33+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:33+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=84","time":"2026-08-04T12:39:34+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 84 -ge 300 ]","time":"2026-08-04T12:39:34+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:34+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:34+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=85","time":"2026-08-04T12:39:35+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 85 -ge 300 ]","time":"2026-08-04T12:39:35+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:35+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:35+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=86","time":"2026-08-04T12:39:36+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 86 -ge 300 ]","time":"2026-08-04T12:39:36+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:36+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:36+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=87","time":"2026-08-04T12:39:37+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 87 -ge 300 ]","time":"2026-08-04T12:39:37+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:37+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:37+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=88","time":"2026-08-04T12:39:38+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 88 -ge 300 ]","time":"2026-08-04T12:39:38+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:38+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:38+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=89","time":"2026-08-04T12:39:39+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 89 -ge 300 ]","time":"2026-08-04T12:39:39+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:39+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:39+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=90","time":"2026-08-04T12:39:40+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 90 -ge 300 ]","time":"2026-08-04T12:39:40+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:40+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:40+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=91","time":"2026-08-04T12:39:41+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 91 -ge 300 ]","time":"2026-08-04T12:39:41+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:41+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:41+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=92","time":"2026-08-04T12:39:42+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 92 -ge 300 ]","time":"2026-08-04T12:39:42+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:42+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:42+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=93","time":"2026-08-04T12:39:43+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 93 -ge 300 ]","time":"2026-08-04T12:39:43+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:43+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:43+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=94","time":"2026-08-04T12:39:44+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 94 -ge 300 ]","time":"2026-08-04T12:39:44+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:44+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:44+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=95","time":"2026-08-04T12:39:45+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 95 -ge 300 ]","time":"2026-08-04T12:39:45+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:45+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:45+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=96","time":"2026-08-04T12:39:46+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 96 -ge 300 ]","time":"2026-08-04T12:39:46+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:46+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:46+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=97","time":"2026-08-04T12:39:47+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 97 -ge 300 ]","time":"2026-08-04T12:39:47+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:47+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:47+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=98","time":"2026-08-04T12:39:48+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 98 -ge 300 ]","time":"2026-08-04T12:39:48+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:48+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:48+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=99","time":"2026-08-04T12:39:49+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 99 -ge 300 ]","time":"2026-08-04T12:39:49+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:49+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:49+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=100","time":"2026-08-04T12:39:50+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 100 -ge 300 ]","time":"2026-08-04T12:39:50+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:50+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:50+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=101","time":"2026-08-04T12:39:51+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 101 -ge 300 ]","time":"2026-08-04T12:39:51+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:51+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:51+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=102","time":"2026-08-04T12:39:52+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 102 -ge 300 ]","time":"2026-08-04T12:39:52+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:52+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:52+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=103","time":"2026-08-04T12:39:53+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 103 -ge 300 ]","time":"2026-08-04T12:39:53+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:53+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:53+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=104","time":"2026-08-04T12:39:54+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 104 -ge 300 ]","time":"2026-08-04T12:39:54+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:54+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:54+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=105","time":"2026-08-04T12:39:55+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 105 -ge 300 ]","time":"2026-08-04T12:39:55+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:55+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:55+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=106","time":"2026-08-04T12:39:56+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 106 -ge 300 ]","time":"2026-08-04T12:39:56+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:56+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:56+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=107","time":"2026-08-04T12:39:57+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 107 -ge 300 ]","time":"2026-08-04T12:39:57+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:57+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:57+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=108","time":"2026-08-04T12:39:58+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 108 -ge 300 ]","time":"2026-08-04T12:39:58+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:58+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:58+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=109","time":"2026-08-04T12:39:59+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 109 -ge 300 ]","time":"2026-08-04T12:39:59+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:39:59+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:39:59+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=110","time":"2026-08-04T12:40:00+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 110 -ge 300 ]","time":"2026-08-04T12:40:00+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:40:00+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:40:00+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=111","time":"2026-08-04T12:40:01+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 111 -ge 300 ]","time":"2026-08-04T12:40:01+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:40:01+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:40:01+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=112","time":"2026-08-04T12:40:02+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 112 -ge 300 ]","time":"2026-08-04T12:40:02+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:40:02+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:40:02+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=113","time":"2026-08-04T12:40:03+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 113 -ge 300 ]","time":"2026-08-04T12:40:03+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:40:03+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:40:03+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=114","time":"2026-08-04T12:40:04+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 114 -ge 300 ]","time":"2026-08-04T12:40:04+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:40:04+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:40:04+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=115","time":"2026-08-04T12:40:05+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 115 -ge 300 ]","time":"2026-08-04T12:40:05+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:40:05+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:40:05+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=116","time":"2026-08-04T12:40:06+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 116 -ge 300 ]","time":"2026-08-04T12:40:06+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:40:06+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:40:06+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=117","time":"2026-08-04T12:40:07+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 117 -ge 300 ]","time":"2026-08-04T12:40:07+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:40:07+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:40:07+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=118","time":"2026-08-04T12:40:08+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 118 -ge 300 ]","time":"2026-08-04T12:40:08+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:40:08+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:40:08+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=119","time":"2026-08-04T12:40:09+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 119 -ge 300 ]","time":"2026-08-04T12:40:09+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:40:09+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:40:09+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=120","time":"2026-08-04T12:40:10+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 120 -ge 300 ]","time":"2026-08-04T12:40:10+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:40:10+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:40:10+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=121","time":"2026-08-04T12:40:11+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 121 -ge 300 ]","time":"2026-08-04T12:40:11+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:40:11+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:40:11+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=122","time":"2026-08-04T12:40:12+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 122 -ge 300 ]","time":"2026-08-04T12:40:12+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:40:12+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:40:12+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=123","time":"2026-08-04T12:40:13+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 123 -ge 300 ]","time":"2026-08-04T12:40:13+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:40:13+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:40:13+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=124","time":"2026-08-04T12:40:14+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 124 -ge 300 ]","time":"2026-08-04T12:40:14+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:40:14+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:40:14+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=125","time":"2026-08-04T12:40:15+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 125 -ge 300 ]","time":"2026-08-04T12:40:15+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:40:15+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:40:15+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=126","time":"2026-08-04T12:40:16+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 126 -ge 300 ]","time":"2026-08-04T12:40:16+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:40:16+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:40:16+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=127","time":"2026-08-04T12:40:17+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 127 -ge 300 ]","time":"2026-08-04T12:40:17+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:40:17+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:40:17+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=128","time":"2026-08-04T12:40:18+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 128 -ge 300 ]","time":"2026-08-04T12:40:18+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:40:18+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:40:18+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=129","time":"2026-08-04T12:40:19+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 129 -ge 300 ]","time":"2026-08-04T12:40:19+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:40:19+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:40:19+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=130","time":"2026-08-04T12:40:20+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 130 -ge 300 ]","time":"2026-08-04T12:40:20+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:40:20+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:40:20+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=131","time":"2026-08-04T12:40:21+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 131 -ge 300 ]","time":"2026-08-04T12:40:21+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:40:21+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:40:21+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=132","time":"2026-08-04T12:40:22+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 132 -ge 300 ]","time":"2026-08-04T12:40:22+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:40:22+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:40:22+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + elapsed=133","time":"2026-08-04T12:40:23+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ 133 -ge 300 ]","time":"2026-08-04T12:40:23+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + [ ! -x /opt/app/data/dist/identity-devspace ]","time":"2026-08-04T12:40:23+02:00"}
+{"level":"info","msg":"dev:identity logs  identity: + sleep 1","time":"2026-08-04T12:40:23+02:00"}

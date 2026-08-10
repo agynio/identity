@@ -154,7 +154,7 @@ func (s *Server) ResolveNickname(ctx context.Context, req *identityv1.ResolveNic
 }
 
 func (s *Server) BatchGetNicknames(ctx context.Context, req *identityv1.BatchGetNicknamesRequest) (*identityv1.BatchGetNicknamesResponse, error) {
-	callerID, err := identityIDFromContext(ctx)
+	callerID, hasIdentity, err := optionalIdentityIDFromContext(ctx)
 	if err != nil {
 		return nil, status.Errorf(codes.Unauthenticated, "identity not available: %v", err)
 	}
@@ -164,16 +164,25 @@ func (s *Server) BatchGetNicknames(ctx context.Context, req *identityv1.BatchGet
 		return nil, status.Errorf(codes.InvalidArgument, "organization_id: %v", err)
 	}
 
+	// The Expose service builds an exposure address from an instance's handle,
+	// and its reconciler re-derives that address with no caller behind it at
+	// all. Like every method here it is internal-only and unreachable through
+	// the Gateway, so an identity-less caller is a platform service and is
+	// served as one -- the same treatment Agents gives GetSandbox. A caller
+	// that does present an identity is a user request and is checked as one.
+	//
 	// Membership, not can_view_threads: that resolves to owner-or-cluster-admin,
 	// so no ordinary member of the organization could read its handles -- nor
 	// could an agent instance, which is what leaves a raw identity id in front
 	// of the model and "unknown participant" in the chat UI.
-	allowed, err := s.checkPermission(ctx, callerID, "member", organizationID)
-	if err != nil {
-		return nil, status.Errorf(codes.Internal, "authorization check: %v", err)
-	}
-	if !allowed {
-		return nil, status.Error(codes.PermissionDenied, "not a member of the organization")
+	if hasIdentity {
+		allowed, err := s.checkPermission(ctx, callerID, "member", organizationID)
+		if err != nil {
+			return nil, status.Errorf(codes.Internal, "authorization check: %v", err)
+		}
+		if !allowed {
+			return nil, status.Error(codes.PermissionDenied, "not a member of the organization")
+		}
 	}
 
 	identityIDs := req.GetIdentityIds()
