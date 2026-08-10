@@ -1,1 +1,4 @@
 .gen/
+
+# DevSpace writes a cache and per-session logs beside the source.
+.devspace/
