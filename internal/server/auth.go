@@ -30,6 +30,25 @@ func identityIDFromContext(ctx context.Context) (uuid.UUID, error) {
 	return uuid.Parse(strings.TrimSpace(values[0]))
 }
 
+// optionalIdentityIDFromContext distinguishes an internal caller, which carries
+// no identity at all, from a caller presenting one. A malformed identity is
+// still an error: only its absence is meaningful.
+func optionalIdentityIDFromContext(ctx context.Context) (uuid.UUID, bool, error) {
+	md, ok := metadata.FromIncomingContext(ctx)
+	if !ok {
+		return uuid.Nil, false, nil
+	}
+	values := md.Get(identityHeaderKey)
+	if len(values) == 0 || strings.TrimSpace(values[0]) == "" {
+		return uuid.Nil, false, nil
+	}
+	id, err := uuid.Parse(strings.TrimSpace(values[0]))
+	if err != nil {
+		return uuid.Nil, false, err
+	}
+	return id, true, nil
+}
+
 func (s *Server) checkPermission(ctx context.Context, identityID uuid.UUID, relation string, organizationID uuid.UUID) (bool, error) {
 	if s.authorizationClient == nil {
 		return false, fmt.Errorf("authorization client not configured")
