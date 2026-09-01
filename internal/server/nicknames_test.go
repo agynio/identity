@@ -50,6 +50,8 @@ type fakeStore struct {
 	lastInstanceSuffix *string
 	resolution         store.NicknameResolution
 	registerErr        error
+	removedOrgs        []uuid.UUID
+	removeOrgErr       error
 }
 
 func (f *fakeStore) RegisterIdentity(context.Context, uuid.UUID, int16) error {
@@ -91,6 +93,14 @@ func (f *fakeStore) ResolveNickname(_ context.Context, _ uuid.UUID, nickname str
 	f.lastNickname = nickname
 	f.lastInstanceSuffix = instanceSuffix
 	return f.resolution, nil
+}
+
+func (f *fakeStore) RemoveOrganizationNicknames(_ context.Context, organizationID uuid.UUID) error {
+	if f.removeOrgErr != nil {
+		return f.removeOrgErr
+	}
+	f.removedOrgs = append(f.removedOrgs, organizationID)
+	return nil
 }
 
 func (f *fakeStore) BatchGetNicknames(_ context.Context, organizationID uuid.UUID, identityIDs []uuid.UUID) (map[uuid.UUID]store.NicknameEntry, error) {
@@ -305,4 +315,30 @@ func TestBatchGetNicknamesReturnsInstanceSuffix(t *testing.T) {
 	require.Len(t, response.Entries, 1)
 	require.Equal(t, "bob", response.Entries[0].GetNickname())
 	require.Equal(t, instanceSuffix, response.Entries[0].GetInstanceSuffix())
+}
+
+func TestDeleteOrganizationResourcesRemovesNicknames(t *testing.T) {
+	organizationID := uuid.New()
+	fake := &fakeStore{}
+	server := New(fake, &fakeAuthClient{})
+
+	req := &identityv1.DeleteOrganizationResourcesRequest{OrganizationId: organizationID.String()}
+	// Internal RPC: no identity in the context, and none required.
+	_, err := server.DeleteOrganizationResources(context.Background(), req)
+	require.NoError(t, err)
+
+	// The cascade retries a step it is unsure finished, so a second call has to
+	// succeed on the now-empty organization rather than report NotFound the way
+	// RemoveNickname would.
+	_, err = server.DeleteOrganizationResources(context.Background(), req)
+	require.NoError(t, err)
+	require.Equal(t, []uuid.UUID{organizationID, organizationID}, fake.removedOrgs)
+}
+
+func TestDeleteOrganizationResourcesRejectsInvalidOrganizationID(t *testing.T) {
+	server := New(&fakeStore{}, &fakeAuthClient{})
+	_, err := server.DeleteOrganizationResources(context.Background(), &identityv1.DeleteOrganizationResourcesRequest{
+		OrganizationId: "not-a-uuid",
+	})
+	require.Equal(t, codes.InvalidArgument, status.Code(err))
 }

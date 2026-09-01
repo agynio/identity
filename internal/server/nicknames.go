@@ -377,3 +377,22 @@ func (s *Server) authorizeNicknameRead(ctx context.Context, callerID uuid.UUID, 
 	}
 	return nil
 }
+
+// DeleteOrganizationResources removes the organization's nicknames. It is
+// internal: Istio settles who may call it, so there is no permission check and
+// no caller identity to check against. Step 8 of the organization teardown,
+// last because the identities that held these nicknames are deleted by the
+// services that registered them, in the steps above.
+//
+// Idempotent: the delete is unconditional, so a retried step finds nothing to
+// remove and still succeeds.
+func (s *Server) DeleteOrganizationResources(ctx context.Context, req *identityv1.DeleteOrganizationResourcesRequest) (*identityv1.DeleteOrganizationResourcesResponse, error) {
+	organizationID, err := parseUUID(req.GetOrganizationId())
+	if err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "organization_id: %v", err)
+	}
+	if err := s.store.RemoveOrganizationNicknames(ctx, organizationID); err != nil {
+		return nil, status.Errorf(codes.Internal, "remove organization nicknames: %v", err)
+	}
+	return &identityv1.DeleteOrganizationResourcesResponse{}, nil
+}
