@@ -63,6 +63,14 @@ func (s *Store) RemoveNickname(ctx context.Context, organizationID uuid.UUID, id
 	return nil
 }
 
+// RemoveOrganizationNicknames drops every nickname held in the organization.
+// Unlike RemoveNickname it does not report an empty result as NotFound: the
+// teardown step it serves is retried, and finding nothing left is success.
+func (s *Store) RemoveOrganizationNicknames(ctx context.Context, organizationID uuid.UUID) error {
+	_, err := s.pool.Exec(ctx, `DELETE FROM org_nicknames WHERE organization_id = $1`, organizationID)
+	return err
+}
+
 func (s *Store) ResolveNickname(ctx context.Context, organizationID uuid.UUID, nickname string, instanceSuffix *string) (NicknameResolution, error) {
 	var resolution NicknameResolution
 	var installationID pgtype.UUID

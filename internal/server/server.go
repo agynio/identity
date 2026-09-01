@@ -22,6 +22,7 @@ type identityStore interface {
 	RemoveNickname(context.Context, uuid.UUID, uuid.UUID, *uuid.UUID) error
 	ResolveNickname(context.Context, uuid.UUID, string, *string) (store.NicknameResolution, error)
 	BatchGetNicknames(context.Context, uuid.UUID, []uuid.UUID) (map[uuid.UUID]store.NicknameEntry, error)
+	RemoveOrganizationNicknames(context.Context, uuid.UUID) error
 }
 
 type authorizationChecker interface {

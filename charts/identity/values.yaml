@@ -159,3 +159,9 @@ metrics:
         path: /metrics
         interval: ""
         scrapeTimeout: ""
+
+internalAuthorizationPolicy:
+  enabled: true
+  serviceAccounts:
+    - name: organizations
+      namespace: ""
